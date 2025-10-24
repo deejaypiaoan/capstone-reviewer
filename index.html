@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAP CKD Predictor - Capstone Defense</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #1e3a8a;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 0;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: 600;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, var(--success-color), #059669);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: var(--light-bg);
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid var(--accent-color);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .research-gap {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 5px solid var(--warning-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .problem-solved {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border-left: 5px solid var(--success-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .challenge-item {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .impact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 10px;
+        }
+
+        .impact-icon {
+            font-size: 2rem;
+            color: var(--success-color);
+            margin-right: 1rem;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+        }
+
+        .faq-question {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px 10px 0 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--secondary-color);
+        }
+
+        .faq-answer {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 0 0 10px 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-heartbeat me-2"></i>
+                ASAP CKD Predictor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">Project Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#purpose">Purpose & Objectives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#research-gaps">Research Gaps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#problem-solved">Problem Solved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#methodology">Methodology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#database">Database Structure</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#challenges">Challenges</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#demonstration">Demonstration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#impact">Impact & Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title">ASAP CKD Predictor</h1>
+                    <p class="hero-subtitle">Machine Learning-Based Survival Analysis and Risk Assessment Tool for Hemodialysis Patient Data Visualization</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="badge bg-light text-dark fs-6 px-3 py-2">Laravel PHP Framework</span>
+                        <span class="badge bg-light text-dark fs-6 px-3 py-2">Python FastAPI</span>
+                        <span class="badge bg-light text-dark fs-6 px-3 py-2">Machine Learning</span>
+                        <span class="badge bg-light text-dark fs-6 px-3 py-2">97% Accuracy</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fas fa-laptop-medical" style="font-size: 8rem; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section id="overview" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">System Description</h5>
+                            <p class="card-text">The ASAP CKD Predictor is a comprehensive healthcare analytics platform designed for chronic kidney disease (CKD) patient data management, risk assessment, and survival analysis. It combines Laravel PHP framework with Python FastAPI machine learning services to provide clinical decision support tools for healthcare professionals.</p>
+                            
+                            <h6 class="mt-4">Key Components:</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i> Patient Management System with CRUD operations</li>
+                                <li><i class="fas fa-check text-success me-2"></i> Machine Learning-based Risk Assessment (97% accuracy)</li>
+                                <li><i class="fas fa-check text-success me-2"></i> Survival Analysis using Cox Regression Models</li>
+                                <li><i class="fas fa-check text-success me-2"></i> Interactive Analytics Dashboard</li>
+                                <li><i class="fas fa-check text-success me-2"></i> Data Export Features (CSV/PDF)</li>
+                                <li><i class="fas fa-check text-success me-2"></i> Role-based Authentication System</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="stats-card">
+                        <div class="stats-number">97%</div>
+                        <div>ML Prediction Accuracy</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number">73.33</div>
+                        <div>SUS Usability Score</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-number">6</div>
+                        <div>Healthcare Professionals Tested</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Purpose and Objectives -->
+    <section id="purpose" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Purpose & Objectives</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-target me-2"></i>Purpose of this Study
+                        </div>
+                        <div class="card-body">
+                            <p>The main goal of this study was to create and test the ASAP CKD Predictor system that helps healthcare workers analyze patient data and check risks for people with kidney disease. The researchers wanted to see how well the system works for managing patient information and making predictions about chronic kidney disease.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-list-check me-2"></i>Objectives of the Study
+                        </div>
+                        <div class="card-body">
+                            <ol>
+                                <li><strong>Determine</strong> the current patient data management processes and CKD prediction methodologies used at ASAP Tagudin Medical Diagnostic Center.</li>
+                                <li><strong>Identify</strong> the features integrated into the developed system for CKD prediction, survival analysis, and patient data visualization.</li>
+                                <li><strong>Assess</strong> the level of usability of the proposed system using the System Usability Scale (SUS) questionnaire.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Gaps -->
+    <section id="research-gaps" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Research Gaps</h2>
+            <div class="research-gap">
+                <h5><i class="fas fa-exclamation-triangle me-2"></i>Identified Gap</h5>
+                <p>The lack of easy-to-use tools for analyzing outcomes, finding survival patterns, and assessing risks limits how well healthcare workers and researchers can understand CKD in their areas. This gap affects both clinical practice and research.</p>
+                
+                <h6 class="mt-3">Specific Problems:</h6>
+                <ul>
+                    <li>Manual patient data management using paper records and simple spreadsheets</li>
+                    <li>No systematic approach for CKD risk assessment</li>
+                    <li>Limited access to modern analysis tools</li>
+                    <li>Difficulty in identifying patterns and trends in patient health</li>
+                    <li>Inability to generate comprehensive reports and insights</li>
+                </ul>
+                
+                <h6 class="mt-3">How Our Project Fills the Gap:</h6>
+                <p>Our ASAP CKD Predictor system provides a comprehensive web-based platform that integrates machine learning algorithms with interactive data visualization to enable healthcare professionals to make evidence-based clinical decisions and improve patient care outcomes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Solved -->
+    <section id="problem-solved" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Problem Solved by this Project</h2>
+            <div class="problem-solved">
+                <h5><i class="fas fa-check-circle me-2"></i>Problems Addressed</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Before (Manual System):</h6>
+                        <ul>
+                            <li>Healthcare workers write patient information on paper</li>
+                            <li>Simple computer spreadsheets for patient tracking</li>
+                            <li>Too much time to enter data</li>
+                            <li>Trouble making good reports</li>
+                            <li>Not able to see patterns in patient health</li>
+                            <li>Difficulty in checking risks for CKD patients</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>After (ASAP CKD Predictor):</h6>
+                        <ul>
+                            <li>Digital patient management with CRUD operations</li>
+                            <li>Machine learning-based risk assessment (97% accuracy)</li>
+                            <li>Automated data processing and analysis</li>
+                            <li>Interactive analytics dashboard with visualizations</li>
+                            <li>Comprehensive reporting features</li>
+                            <li>Real-time CKD prediction and survival analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section id="methodology" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Research Design, Tools, Framework & Workflow</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-flask me-2"></i>Research Design
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Descriptive Developmental Research Design</strong></p>
+                            <p>This study used a descriptive developmental research design to gather and acquire important information related to the proposed system that could help determine the efficiency performance level.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-cogs me-2"></i>Development Model
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Rapid Application Development (RAD) Model</strong></p>
+                            <p>Focuses on quickly adjusting to changes in project requirements and involves end-users throughout the entire process, creating a responsive working environment for continuous improvement.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-tools me-2"></i>Tools & Framework
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Technology Stack:</strong></p>
+                            <ul class="list-unstyled">
+                                <li>• Laravel PHP Framework</li>
+                                <li>• MySQL Database</li>
+                                <li>• Python FastAPI (ML Service)</li>
+                                <li>• Bootstrap CSS</li>
+                                <li>• Chart.js</li>
+                                <li>• JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-sitemap me-2"></i>RAD Development Workflow
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 text-center">
+                                    <div class="feature-icon"><i class="fas fa-clipboard-list"></i></div>
+                                    <h6>Requirements Planning</h5>
+                                    <p>Gathered permission from ASAP Tagudin Medical Diagnostic Center to collect patient data for the study.</p>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="feature-icon"><i class="fas fa-pencil-ruler"></i></div>
+                                    <h6>User Design</h5>
+                                    <p>Determined software functionality and formalized essential application parts and system requirements.</p>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="feature-icon"><i class="fas fa-hammer"></i></div>
+                                    <h6>Construction</h5>
+                                    <p>Built the system using Laravel PHP, MySQL, Python FastAPI, Bootstrap CSS, Chart.js, and JavaScript.</p>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                                    <h6>Cutover</h5>
+                                    <p>Conducted practice runs to test system functionality and identify potential issues before deployment.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Structure -->
+    <section id="database" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Database Structure (ERD)</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Key Database Tables</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Core Tables:</h6>
+                                    <ul>
+                                        <li><strong>patients</strong> - Patient records with clinical data</li>
+                                        <li><strong>users</strong> - User accounts and authentication</li>
+                                        <li><strong>roles</strong> - Role definitions and permissions</li>
+                                        <li><strong>sessions</strong> - User session management</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Patient Data Fields:</h6>
+                                    <ul>
+                                        <li>Demographics (name, birthday, gender)</li>
+                                        <li>Clinical (diagnosis, comorbidities)</li>
+                                        <li>Lab Values (creatinine, BUN, hemoglobin)</li>
+                                        <li>Treatment (dialysis_years, schedule)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-database me-2"></i>Database Features
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Soft Deletes</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Timestamps</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Foreign Key Constraints</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Indexing for Performance</li>
+                                <li><i class="fas fa-check text-success me-2"></i>MySQL Engine</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges -->
+    <section id="challenges" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Challenges from Development</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="challenge-item">
+                        <h6><i class="fas fa-exclamation-triangle text-danger me-2"></i>Data Integration Challenge</h6>
+                        <p>Integrating real patient data from ASAP Tagudin Medical Diagnostic Center with machine learning algorithms while maintaining data privacy and security standards.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h6><i class="fas fa-code text-danger me-2"></i>Technical Complexity</h6>
+                        <p>Implementing a dual-system architecture with Laravel PHP backend and Python FastAPI machine learning service, ensuring seamless communication between components.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="challenge-item">
+                        <h6><i class="fas fa-users text-danger me-2"></i>User Experience Design</h6>
+                        <p>Creating an intuitive interface for healthcare professionals with varying levels of technical expertise while maintaining clinical workflow efficiency.</p>
+                    </div>
+                    <div class="challenge-item">
+                        <h6><i class="fas fa-chart-line text-danger me-2"></i>Model Accuracy</h6>
+                        <p>Achieving high prediction accuracy (97%) while ensuring the machine learning models are clinically relevant and interpretable for healthcare professionals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demonstration -->
+    <section id="demonstration" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Project Demonstration</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-user-md me-2"></i>Authentication System
+                        </div>
+                        <div class="card-body">
+                            <h6>Super Admin Access:</h6>
+                            <ul>
+                                <li>Full patient management (CRUD)</li>
+                                <li>Export features (CSV/PDF)</li>
+                                <li>System configuration</li>
+                                <li>User management</li>
+                            </ul>
+                            <h6>Admin Access:</h6>
+                            <ul>
+                                <li>View-only patient records</li>
+                                <li>CKD prediction features</li>
+                                <li>Analytics dashboard</li>
+                                <li>Basic reporting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-brain me-2"></i>ML Prediction Process
+                        </div>
+                        <div class="card-body">
+                            <ol>
+                                <li>Patient data input through web interface</li>
+                                <li>Data validation and preprocessing</li>
+                                <li>API call to Python FastAPI service</li>
+                                <li>Machine learning model execution</li>
+                                <li>Risk assessment and survival analysis</li>
+                                <li>Results display with visualizations</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar me-2"></i>Analytics Dashboard
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Patient demographics visualization</li>
+                                <li>Gender distribution charts</li>
+                                <li>Age group analysis</li>
+                                <li>ESRD cause distribution</li>
+                                <li>Survival curves</li>
+                                <li>Risk factor analysis</li>
+                                <li>ML model performance metrics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact and Results -->
+    <section id="impact" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Impact & Results of the Study</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line me-2"></i>Survey Results (System Usability Scale)
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>SUS Final Score: 73.33</h6>
+                                    <ul>
+                                        <li><strong>Grade:</strong> B</li>
+                                        <li><strong>Standard Deviation:</strong> 15.42</li>
+                                        <li><strong>Min Score:</strong> 35</li>
+                                        <li><strong>Max Score:</strong> 90</li>
+                                        <li><strong>Usability Level:</strong> Good</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Respondents:</h6>
+                                    <ul>
+                                        <li>Head Nurse: 1</li>
+                                        <li>Nursing Staff: 5</li>
+                                        <li><strong>Total:</strong> 6 healthcare professionals</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="mt-3"><strong>Interpretation:</strong> The system received a "Good" usability rating, indicating that healthcare workers found the system easy to use and helpful for managing patient data and making clinical decisions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-trophy me-2"></i>Key Achievements
+                        </div>
+                        <div class="card-body">
+                            <div class="stats-card">
+                                <div class="stats-number">97%</div>
+                                <div>ML Prediction Accuracy</div>
+                            </div>
+                            <div class="stats-card">
+                                <div class="stats-number">73.33</div>
+                                <div>SUS Usability Score</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h5>Impact on Healthcare Delivery:</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="impact-item">
+                                <div class="impact-icon"><i class="fas fa-user-md"></i></div>
+                                <div>
+                                    <h6>Healthcare Professionals</h6>
+                                    <p>Easily access comprehensive patient data, generate CKD predictions, and make evidence-based clinical decisions.</p>
+                                </div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-icon"><i class="fas fa-microscope"></i></div>
+                                <div>
+                                    <h6>Medical Researchers</h6>
+                                    <p>Analyze patient data patterns, conduct survival analysis studies, and generate research reports.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="impact-item">
+                                <div class="impact-icon"><i class="fas fa-cogs"></i></div>
+                                <div>
+                                    <h6>System Administrators</h6>
+                                    <p>Manage patient records, monitor system performance, and ensure data security.</p>
+                                </div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-icon"><i class="fas fa-heart"></i></div>
+                                <div>
+                                    <h6>Patients</h6>
+                                    <p>Benefit from improved healthcare delivery through accurate risk assessment and personalized treatment recommendations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Possible Important Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle me-2"></i>
+                    What is the accuracy of the machine learning models used in this system?
+                </div>
+                <div class="faq-answer">
+                    <p>The system achieves <strong>97% accuracy</strong> in CKD prediction using Gradient Boosting algorithms. The machine learning models include:</p>
+                    <ul>
+                        <li><strong>Risk Assessment Model:</strong> Random Forest Classifier for predicting patient risk levels</li>
+                        <li><strong>Survival Analysis Model:</strong> Cox Proportional Hazards Model for survival probability predictions</li>
+                        <li><strong>Feature Engineering:</strong> 12 clinical parameters including age, gender, creatinine, BUN, hemoglobin, albumin, phosphorus, calcium, diabetes, hypertension, CVD, and dialysis years</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle me-2"></i>
+                    How does the authentication system work and what are the different user roles?
+                </div>
+                <div class="faq-answer">
+                    <p>The system implements a dual-role authentication system:</p>
+                    <ul>
+                        <li><strong>Super Admin:</strong> Full system access including patient CRUD operations, export features, user management, and system configuration</li>
+                        <li><strong>Admin:</strong> Limited access with view-only patient records, CKD prediction features, analytics dashboard, and basic reporting</li>
+                    </ul>
+                    <p>Authentication uses Laravel's built-in system with role-based middleware for access control and session management.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle me-2"></i>
+                    What research methodology was used in developing this system?
+                </div>
+                <div class="faq-answer">
+                    <p>The project used a <strong>Descriptive Developmental Research Design</strong> with the <strong>Rapid Application Development (RAD) Model</strong>:</p>
+                    <ul>
+                        <li><strong>Requirements Planning:</strong> Gathered permission from ASAP Tagudin Medical Diagnostic Center</li>
+                        <li><strong>User Design:</strong> Determined software functionality and system requirements</li>
+                        <li><strong>Construction:</strong> Built using Laravel PHP, MySQL, Python FastAPI, Bootstrap CSS, Chart.js, and JavaScript</li>
+                        <li><strong>Cutover:</strong> Conducted practice runs and system testing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle me-2"></i>
+                    How was the system's usability evaluated and what were the results?
+                </div>
+                <div class="faq-answer">
+                    <p>The system's usability was evaluated using the <strong>System Usability Scale (SUS) questionnaire</strong> administered to 6 healthcare professionals at ASAP Tagudin Medical Diagnostic Center (1 Head Nurse, 5 Nursing Staff).</p>
+                    <p><strong>Results:</strong></p>
+                    <ul>
+                        <li><strong>SUS Score:</strong> 73.33</li>
+                        <li><strong>Grade:</strong> B (Good)</li>
+                        <li><strong>Standard Deviation:</strong> 15.42</li>
+                        <li><strong>Score Range:</strong> 35-90</li>
+                    </ul>
+                    <p>This indicates that healthcare workers found the system easy to use and helpful for patient data management and clinical decision-making.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle me-2"></i>
+                    What are the main features of the ASAP CKD Predictor system?
+                </div>
+                <div class="faq-answer">
+                    <p>The system includes five main feature modules:</p>
+                    <ul>
+                        <li><strong>Patient Management Module:</strong> Complete CRUD operations for patient records, including demographics, medical history, and lab results</li>
+                        <li><strong>CKD Prediction Interface:</strong> Machine learning-based risk assessment and survival analysis with real-time predictions</li>
+                        <li><strong>Analytics Dashboard:</strong> Interactive visualizations including patient demographics, survival curves, and risk factor analysis</li>
+                        <li><strong>Reporting Features:</strong> Comprehensive reports and data export capabilities in CSV and PDF formats</li>
+                        <li><strong>Educational Resources:</strong> Information about CKD management, treatment methods, and best practices for healthcare workers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle me-2"></i>
+                    What challenges were encountered during development and how were they addressed?
+                </div>
+                <div class="faq-answer">
+                    <p>Key challenges included:</p>
+                    <ul>
+                        <li><strong>Data Integration:</strong> Successfully integrated real patient data while maintaining privacy and security standards</li>
+                        <li><strong>Technical Complexity:</strong> Implemented seamless communication between Laravel PHP backend and Python FastAPI ML service</li>
+                        <li><strong>User Experience:</strong> Designed intuitive interface for healthcare professionals with varying technical expertise</li>
+                        <li><strong>Model Accuracy:</strong> Achieved 97% prediction accuracy while ensuring clinical relevance and interpretability</li>
+                    </ul>
+                    <p>These challenges were addressed through iterative development, continuous user feedback, and rigorous testing protocols.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle me-2"></i>
+                    What is the significance of this project for healthcare delivery in the Philippines?
+                </div>
+                <div class="faq-answer">
+                    <p>This project addresses critical healthcare challenges in the Philippines:</p>
+                    <ul>
+                        <li><strong>Scale of CKD Problem:</strong> CKD affects 11.2% of Filipinos (12.94 million people), with one Filipino developing kidney failure every hour</li>
+                        <li><strong>Economic Impact:</strong> Total cost of CKD in the Philippines is P592.15 billion, with diabetes patients making up 60.9% of these costs</li>
+                        <li><strong>Healthcare Gap:</strong> Rural areas like Tagudin, Ilocos Sur lack modern analysis tools for CKD patient management</li>
+                        <li><strong>Solution Impact:</strong> Provides evidence-based decision support, improves clinical outcomes, and enhances healthcare delivery efficiency</li>
+                    </ul>
+                    <p>The system fills the gap in analyzing kidney disease outcomes and supports better healthcare delivery for hemodialysis patients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5><i class="fas fa-heartbeat me-2"></i>ASAP CKD Predictor</h5>
+                    <p>Machine Learning-Based Survival Analysis and Risk Assessment Tool for Hemodialysis Patient Data Visualization</p>
+                    <p><strong>Researchers:</strong> John Enrique C. Dela Cruz, Hanz Inaki B. Garcia, John Michael Foster, Deejay D. Piaoan</p>
+                </div>
+                <div class="col-lg-6">
+                    <h6>Project Details</h6>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-university me-2"></i>Ilocos Sur Polytechnic State College</li>
+                        <li><i class="fas fa-graduation-cap me-2"></i>Bachelor of Science in Information Technology</li>
+                        <li><i class="fas fa-calendar me-2"></i>October 2025</li>
+                        <li><i class="fas fa-user-tie me-2"></i>Adviser: Jonaline Z. Eustaquio, MIT</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2025 ASAP CKD Predictor Capstone Project. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollButton.style.display = 'block';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        });
+
+        // Initially hide scroll to top button
+        document.querySelector('.scroll-to-top').style.display = 'none';
+    </script>
+</body>
+</html>
