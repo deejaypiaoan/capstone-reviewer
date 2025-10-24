@@ -274,6 +274,9 @@
                         <a class="nav-link" href="#database">Database Structure</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#diagrams">System Diagrams</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#challenges">Challenges</a>
                     </li>
                     <li class="nav-item">
@@ -533,7 +536,11 @@
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Key Database Tables</h5>
+                            <h5 class="card-title">Entity Relationship Diagram</h5>
+                            <div class="text-center mb-4">
+                                <img src="ERD.jpg" alt="Entity Relationship Diagram" class="img-fluid rounded shadow" style="max-height: 600px;">
+                            </div>
+                            <h6>Key Database Tables:</h6>
                             <div class="row">
                                 <div class="col-md-6">
                                     <h6>Core Tables:</h6>
@@ -542,6 +549,8 @@
                                         <li><strong>users</strong> - User accounts and authentication</li>
                                         <li><strong>roles</strong> - Role definitions and permissions</li>
                                         <li><strong>sessions</strong> - User session management</li>
+                                        <li><strong>prediction_results</strong> - ML prediction outcomes</li>
+                                        <li><strong>personal_access_tokens</strong> - API authentication tokens</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
@@ -570,6 +579,86 @@
                                 <li><i class="fas fa-check text-success me-2"></i>Indexing for Performance</li>
                                 <li><i class="fas fa-check text-success me-2"></i>MySQL Engine</li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Diagrams -->
+    <section id="diagrams" class="py-5">
+        <div class="container">
+            <h2 class="section-title">System Diagrams</h2>
+            
+            <!-- Use Case Diagram -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-users me-2"></i>Use Case Diagram
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src="UCD.jpg" alt="Use Case Diagram" class="img-fluid rounded shadow" style="max-height: 500px;">
+                            </div>
+                            <div class="mt-4">
+                                <h6>Use Case Description:</h6>
+                                <p>The Use Case Diagram illustrates the functional requirements of the ASAP CKD Predictor system from the perspective of two main actors:</p>
+                                <ul>
+                                    <li><strong>Admin/Nurse</strong> - Limited access with view-only patient records and basic analytics</li>
+                                    <li><strong>Super Admin/Head Nurse</strong> - Full system access including patient management, exports, and system configuration</li>
+                                </ul>
+                                <p><strong>Key Use Cases:</strong> Login, Add Patient, Manage Patients (Edit/Delete), Export Patient Records, Perform CKD Predictions, View Analytics, and Export Prediction Results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Flow Diagrams -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-project-diagram me-2"></i>Data Flow Diagram - Level 0
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src="DFD - Level 0.jpg" alt="Data Flow Diagram Level 0" class="img-fluid rounded shadow" style="max-height: 400px;">
+                            </div>
+                            <div class="mt-3">
+                                <h6>Level 0 DFD Description:</h6>
+                                <p>Shows the top-level view of the ASAP CKD Predictor system and its interactions with external entities:</p>
+                                <ul>
+                                    <li><strong>Super Admin</strong> - Full access to patient management and prediction features</li>
+                                    <li><strong>Admin</strong> - Limited access to prediction results and basic reports</li>
+                                    <li><strong>Machine Learning Model</strong> - External ML service for predictions and analytics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-sitemap me-2"></i>Data Flow Diagram - Level 1
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src="DFD - Level 1.jpg" alt="Data Flow Diagram Level 1" class="img-fluid rounded shadow" style="max-height: 400px;">
+                            </div>
+                            <div class="mt-3">
+                                <h6>Level 1 DFD Description:</h6>
+                                <p>Details the core processes within the system:</p>
+                                <ul>
+                                    <li><strong>Login (1)</strong> - User authentication and role-based access</li>
+                                    <li><strong>ML Analytics (2.0)</strong> - Machine learning analysis processes</li>
+                                    <li><strong>Patient Management (3.0, 3.1)</strong> - Add and manage patient records</li>
+                                    <li><strong>Making Predictions (4.0)</strong> - CKD prediction processes</li>
+                                    <li><strong>Calculated Prediction (5.0)</strong> - Results calculation and distribution</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
