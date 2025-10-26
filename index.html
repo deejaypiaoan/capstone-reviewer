@@ -202,6 +202,67 @@
             border: 1px solid #e2e8f0;
         }
 
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h6 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .analytics-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--success-color);
+        }
+
+        .step-icon {
+            background: var(--success-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .analytics-step .step-content h6 {
+            color: var(--success-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
         .footer {
             background: var(--dark-text);
             color: white;
@@ -269,6 +330,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#methodology">Methodology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ckd-process">CKD Prediction Process</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ml-analytics">ML Analytics</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#database">Database Structure</a>
@@ -689,6 +756,303 @@
                     <div class="challenge-item">
                         <h6><i class="fas fa-chart-line text-danger me-2"></i>Model Accuracy</h6>
                         <p>Achieving high prediction accuracy (97%) while ensuring the machine learning models are clinically relevant and interpretable for healthcare professionals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How CKD Prediction Works -->
+    <section id="ckd-process" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">How CKD Prediction Works</h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-brain me-2"></i>Step-by-Step CKD Prediction Process
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="text-primary mb-4">Phase 1: Data Input & Validation</h5>
+                                    <div class="process-step">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <h6>Patient Data Entry</h6>
+                                            <p>Healthcare professional enters patient information through the web interface:</p>
+                                            <ul>
+                                                <li><strong>Demographics:</strong> Age, Gender, Civil Status</li>
+                                                <li><strong>Clinical Data:</strong> Diagnosis, Cause of ESRD, Comorbidities</li>
+                                                <li><strong>Lab Values:</strong> Creatinine, BUN, Hemoglobin, Albumin, Phosphorus, Calcium</li>
+                                                <li><strong>Treatment Info:</strong> Dialysis years, Schedule, Type</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="process-step">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <h6>Data Validation</h6>
+                                            <p>Laravel PHP framework validates the input data:</p>
+                                            <ul>
+                                                <li>Checks data format and completeness</li>
+                                                <li>Validates lab value ranges</li>
+                                                <li>Ensures required fields are filled</li>
+                                                <li>Applies business rules and constraints</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="text-primary mb-4">Phase 2: Machine Learning Processing</h5>
+                                    <div class="process-step">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <h6>API Communication</h6>
+                                            <p>Laravel sends validated data to Python FastAPI service:</p>
+                                            <ul>
+                                                <li>HTTP POST request to ML service</li>
+                                                <li>JSON payload with patient data</li>
+                                                <li>Secure API authentication</li>
+                                                <li>Timeout handling (10 seconds)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="process-step">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <h6>Data Preprocessing</h6>
+                                            <p>Python service prepares data for ML models:</p>
+                                            <ul>
+                                                <li>Gender encoding (Male=1, Female=0)</li>
+                                                <li>Feature normalization</li>
+                                                <li>Missing value handling</li>
+                                                <li>Data type conversion</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4">
+                                <div class="col-lg-6">
+                                    <h5 class="text-primary mb-4">Phase 3: ML Model Execution</h5>
+                                    <div class="process-step">
+                                        <div class="step-number">5</div>
+                                        <div class="step-content">
+                                            <h6>Risk Assessment Model</h6>
+                                            <p><strong>Random Forest Classifier</strong> processes the data:</p>
+                                            <ul>
+                                                <li>Uses 12 clinical parameters</li>
+                                                <li>Generates risk probability (0-1)</li>
+                                                <li>Categorizes risk: Low/Moderate/High/Critical</li>
+                                                <li>Identifies top contributing factors</li>
+                                                <li><strong>Accuracy: 97%</strong></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="process-step">
+                                        <div class="step-number">6</div>
+                                        <div class="step-content">
+                                            <h6>Survival Analysis Model</h6>
+                                            <p><strong>Cox Proportional Hazards Model</strong> calculates:</p>
+                                            <ul>
+                                                <li>6-month survival probability</li>
+                                                <li>12-month survival probability</li>
+                                                <li>24-month survival probability</li>
+                                                <li>Hazard ratio calculation</li>
+                                                <li>Time-to-event predictions</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <h5 class="text-primary mb-4">Phase 4: Results & Visualization</h5>
+                                    <div class="process-step">
+                                        <div class="step-number">7</div>
+                                        <div class="step-content">
+                                            <h6>Results Processing & Display</h6>
+                                            <p>Results are formatted and displayed to healthcare professionals:</p>
+                                            <ul>
+                                                <li><strong>Risk Assessment:</strong> Probability score, category, confidence level</li>
+                                                <li><strong>Survival Analysis:</strong> Survival curves, hazard ratios</li>
+                                                <li><strong>Key Factors:</strong> Top contributing clinical parameters</li>
+                                                <li><strong>Recommendations:</strong> Clinical decision support suggestions</li>
+                                                <li><strong>Visualizations:</strong> Charts and graphs for easy interpretation</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How ML Analytics Works -->
+    <section id="ml-analytics" class="py-5">
+        <div class="container">
+            <h2 class="section-title">How ML Analytics Works</h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line me-2"></i>Machine Learning Analytics Process
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h5 class="text-success mb-4">Data Collection & Aggregation</h5>
+                                    <div class="analytics-step">
+                                        <div class="step-icon"><i class="fas fa-database"></i></div>
+                                        <div class="step-content">
+                                            <h6>Patient Data Aggregation</h6>
+                                            <p>The system collects and aggregates patient data from multiple sources:</p>
+                                            <ul>
+                                                <li>Historical patient records</li>
+                                                <li>Current lab results</li>
+                                                <li>Treatment outcomes</li>
+                                                <li>Demographic information</li>
+                                                <li>Clinical observations</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="analytics-step">
+                                        <div class="step-icon"><i class="fas fa-filter"></i></div>
+                                        <div class="step-content">
+                                            <h6>Data Cleaning & Preprocessing</h6>
+                                            <p>Raw data is cleaned and prepared for analysis:</p>
+                                            <ul>
+                                                <li>Remove duplicate entries</li>
+                                                <li>Handle missing values</li>
+                                                <li>Normalize data formats</li>
+                                                <li>Validate data integrity</li>
+                                                <li>Create feature vectors</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="text-success mb-4">Analytics Processing</h5>
+                                    <div class="analytics-step">
+                                        <div class="step-icon"><i class="fas fa-cogs"></i></div>
+                                        <div class="step-content">
+                                            <h6>Statistical Analysis</h6>
+                                            <p>Advanced statistical methods are applied:</p>
+                                            <ul>
+                                                <li><strong>Descriptive Statistics:</strong> Mean, median, standard deviation</li>
+                                                <li><strong>Correlation Analysis:</strong> Relationships between variables</li>
+                                                <li><strong>Trend Analysis:</strong> Patterns over time</li>
+                                                <li><strong>Distribution Analysis:</strong> Data spread and outliers</li>
+                                                <li><strong>Cohort Analysis:</strong> Patient group comparisons</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="analytics-step">
+                                        <div class="step-icon"><i class="fas fa-brain"></i></div>
+                                        <div class="step-content">
+                                            <h6>Machine Learning Analytics</h6>
+                                            <p>ML algorithms generate insights:</p>
+                                            <ul>
+                                                <li><strong>Feature Importance:</strong> Which factors matter most</li>
+                                                <li><strong>Pattern Recognition:</strong> Hidden data patterns</li>
+                                                <li><strong>Predictive Modeling:</strong> Future outcome predictions</li>
+                                                <li><strong>Clustering:</strong> Patient group identification</li>
+                                                <li><strong>Anomaly Detection:</strong> Unusual cases identification</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4">
+                                <div class="col-lg-6">
+                                    <h5 class="text-success mb-4">Visualization & Reporting</h5>
+                                    <div class="analytics-step">
+                                        <div class="step-icon"><i class="fas fa-chart-bar"></i></div>
+                                        <div class="step-content">
+                                            <h6>Interactive Dashboards</h6>
+                                            <p>Results are presented through interactive visualizations:</p>
+                                            <ul>
+                                                <li><strong>Demographics Charts:</strong> Age, gender distribution</li>
+                                                <li><strong>Survival Curves:</strong> Kaplan-Meier survival plots</li>
+                                                <li><strong>Risk Distribution:</strong> Patient risk categorization</li>
+                                                <li><strong>Trend Analysis:</strong> Time-series charts</li>
+                                                <li><strong>Correlation Heatmaps:</strong> Variable relationships</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="analytics-step">
+                                        <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                                        <div class="step-content">
+                                            <h6>Clinical Insights Generation</h6>
+                                            <p>The system generates actionable clinical insights:</p>
+                                            <ul>
+                                                <li><strong>Risk Stratification:</strong> Patient risk level classification</li>
+                                                <li><strong>Treatment Recommendations:</strong> Evidence-based suggestions</li>
+                                                <li><strong>Outcome Predictions:</strong> Future health outcomes</li>
+                                                <li><strong>Resource Planning:</strong> Healthcare resource needs</li>
+                                                <li><strong>Quality Metrics:</strong> Performance indicators</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical Architecture -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-sitemap me-2"></i>Technical Architecture Overview
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6 class="text-primary">Frontend Layer</h6>
+                                    <ul>
+                                        <li>Laravel Blade Templates</li>
+                                        <li>Bootstrap CSS Framework</li>
+                                        <li>Chart.js Visualizations</li>
+                                        <li>JavaScript Interactions</li>
+                                        <li>Responsive Design</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6 class="text-primary">Backend Layer</h6>
+                                    <ul>
+                                        <li>Laravel PHP Framework</li>
+                                        <li>MySQL Database</li>
+                                        <li>RESTful API Endpoints</li>
+                                        <li>Authentication System</li>
+                                        <li>Data Validation</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6 class="text-primary">ML Service Layer</h6>
+                                    <ul>
+                                        <li>Python FastAPI</li>
+                                        <li>Scikit-learn Library</li>
+                                        <li>Lifelines Survival Analysis</li>
+                                        <li>Pandas Data Processing</li>
+                                        <li>NumPy Calculations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
