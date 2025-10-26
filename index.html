@@ -301,6 +301,145 @@
                 font-size: 1rem;
             }
         }
+
+        .slide-container {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 0;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .slide-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .slide-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .slide-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .script-box {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            border-left: 5px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .script-box .script-label {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .script-box .script-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--dark-text);
+            font-style: italic;
+        }
+
+        .slide-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .slide-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .slide-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .slide-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .slides-list {
+            position: sticky;
+            top: 100px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .slides-list h6 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .slides-list-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .slides-list-item:hover {
+            background: var(--light-bg);
+            border-left-color: var(--primary-color);
+        }
+
+        .slides-list-item.active {
+            background: var(--light-bg);
+            border-left-color: var(--accent-color);
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -354,6 +493,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#defense-script">Defense Script</a>
                     </li>
                 </ul>
             </div>
@@ -1341,6 +1483,972 @@
         </div>
     </section>
 
+    <!-- Defense Script Section -->
+    <section id="defense-script" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Capstone Defense Presentation Script</h2>
+            <p class="text-center mb-4">Complete presentation script with slide-by-slide content for your capstone defense</p>
+            
+            <div class="row">
+                <!-- Slides List -->
+                <div class="col-lg-3">
+                    <div class="slides-list">
+                        <h6><i class="fas fa-list me-2"></i>Presentation Slides</h6>
+                        <div class="slides-list-item active" onclick="showSlide(1)">Slide 1: Title</div>
+                        <div class="slides-list-item" onclick="showSlide(2)">Slide 2: Researchers</div>
+                        <div class="slides-list-item" onclick="showSlide(3)">Slide 3: Title Page</div>
+                        <div class="slides-list-item" onclick="showSlide(4)">Slide 4: Background</div>
+                        <div class="slides-list-item" onclick="showSlide(5)">Slide 5: Objectives</div>
+                        <div class="slides-list-item" onclick="showSlide(6)">Slide 6: Framework</div>
+                        <div class="slides-list-item" onclick="showSlide(7)">Slide 7: Scope & Limitations</div>
+                        <div class="slides-list-item" onclick="showSlide(8)">Slide 8: Importance</div>
+                        <div class="slides-list-item" onclick="showSlide(9)">Slide 9: Methodology</div>
+                        <div class="slides-list-item" onclick="showSlide(10)">Slide 10: RAD Model</div>
+                        <div class="slides-list-item" onclick="showSlide(11)">Slide 11: Population</div>
+                        <div class="slides-list-item" onclick="showSlide(12)">Slide 12: Data Analysis</div>
+                        <div class="slides-list-item" onclick="showSlide(13)">Slide 13: Features</div>
+                        <div class="slides-list-item" onclick="showSlide(14)">Slide 14: Architecture</div>
+                        <div class="slides-list-item" onclick="showSlide(15)">Slide 15: Features Demo</div>
+                        <div class="slides-list-item" onclick="showSlide(16)">Slide 16: Results</div>
+                        <div class="slides-list-item" onclick="showSlide(17)">Slide 17: Findings</div>
+                        <div class="slides-list-item" onclick="showSlide(18)">Slide 18: Usability</div>
+                        <div class="slides-list-item" onclick="showSlide(19)">Slide 19: Conclusions</div>
+                        <div class="slides-list-item" onclick="showSlide(20)">Slide 20: Recommendations</div>
+                        <div class="slides-list-item" onclick="showSlide(21)">Closing Script</div>
+                    </div>
+                </div>
+
+                <!-- Slide Content -->
+                <div class="col-lg-9">
+                    <!-- Slide 1 -->
+                    <div id="slide-1" class="slide-container bg-light position-relative">
+                        <div class="slide-number">1</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Capstone Project Defense</h2>
+                            <div class="text-center mb-4">
+                                <h4 class="text-primary mb-3">ASAP CKD Predictor</h4>
+                                <p class="lead">Machine Learning-Based Survival Analysis and Risk Assessment Tool<br>for Hemodialysis Patient Data Visualization</p>
+                                <div class="mt-4">
+                                    <p><strong>Presented by:</strong></p>
+                                    <p>John Enrique C. Dela Cruz<br>Hanz Inaki B. Garcia<br>John Michael Foster<br>Deejay D. Piaoan</p>
+                                    <p class="mt-3"><strong>Bachelor of Science in Information Technology</strong><br>Ilocos Sur Polytechnic State College<br>October 2025</p>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">Good [morning/afternoon]. The proponents would like to present the ASAP CKD Predictor: a Machine Learning-Based Survival Analysis and Risk Assessment Tool for Hemodialysis Patient Data Visualization. This capstone project is submitted in partial fulfillment of the requirements for the degree of Bachelor of Science in Information Technology at Ilocos Sur Polytechnic State College.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div id="slide-2" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">2</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Researchers</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="text-primary">Project Manager & Developer</h5>
+                                    <p>Deejay D. Piaoan</p>
+                                    <ul>
+                                        <li>Coordinate with the project team</li>
+                                        <li>Maintain open communication with all members</li>
+                                    </ul>
+                                    <h5 class="text-primary mt-4">System Analyst and Designer</h5>
+                                    <p>John Enrique C. Dela Cruz<br>Hanz Inaki B. Garcia</p>
+                                    <ul>
+                                        <li>Coordinate technical team efforts</li>
+                                        <li>Ensure solutions are practical and consistent</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="text-primary">Programmer and Developer</h5>
+                                    <p>Deejay D. Piaoan<br>John Enrique Dela Cruz</p>
+                                    <ul>
+                                        <li>Manage system planning and design</li>
+                                        <li>Evaluate software needs</li>
+                                    </ul>
+                                    <h5 class="text-primary mt-4">Documenter/Technical Writer</h5>
+                                    <p>John Michael Foster<br>Hanz Inaki B. Garcia</p>
+                                    <ul>
+                                        <li>Status report on the whole project</li>
+                                        <li>Publish project plan timeline</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The research team consists of four members with distinct roles: Deejay Piaoan serving as Project Manager and Developer; John Enrique Dela Cruz and Hanz Inaki Garcia as System Analysts and Designers; John Michael Foster as the Documenter and Technical Writer; with Piaoan and Dela Cruz also serving as Programmers and Developers. Each member contributed to coordinating activities, resolving technical challenges, and building the comprehensive system.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div id="slide-3" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">3</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Title Page</h2>
+                            <div class="text-center">
+                                <h4 class="text-primary mb-4">ASAP CKD PREDICTOR</h4>
+                                <p class="lead">Machine Learning-Based Survival Analysis and Risk Assessment Tool<br>for Hemodialysis Patient Data Visualization</p>
+                                <div class="mt-4">
+                                    <h5>Researchers:</h5>
+                                    <p>DEEJAY D. PIAOAN<br>HANZ INAKI B. GARCIA<br>JOHN ENRIQUE C. DELA CRUZ<br>JOHN MICHAEL FOSTER</p>
+                                    <p class="mt-3"><strong>Ilocos Sur Polytechnic State College</strong><br>College of Arts and Sciences<br>Tagudin, Ilocos Sur</p>
+                                    <p class="mt-2">Bachelor of Science in Information Technology<br>October 2025<br><strong>Adviser:</strong> Jonaline Z. Eustaquio, MIT</p>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The study is conducted under the supervision of Adviser Jonaline Z. Eustaquio, MIT, at Ilocos Sur Polytechnic State College, College of Arts and Sciences, in Tagudin, Ilocos Sur, dated October 2025.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div id="slide-4" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">4</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Chapter 1 - Background of the Study</h2>
+                            <p class="text-center lead mb-4">Chronic kidney disease (CKD) is becoming a major health problem that needs better solutions for patient care.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="text-primary">Key Points:</h6>
+                                    <ul>
+                                        <li>ASAP CKD Predictor aims to help healthcare workers understand CKD patient outcomes</li>
+                                        <li>More people worldwide need hemodialysis treatment</li>
+                                        <li>Hospitals struggle to find useful patterns due to limited analysis tools</li>
+                                    </ul>
+                                    <h6 class="text-primary mt-3">Sources:</h6>
+                                    <ul>
+                                        <li><strong>Global:</strong> Mahmud et al. (2024) - 97% accuracy using Gradient Boosting</li>
+                                        <li><strong>National:</strong> Villanueva et al. (2025) - Costs increase from PHP 44,610 to PHP 120,948</li>
+                                        <li><strong>Local:</strong> Reyes & Almojuela (2020) - Quality of life in hemodialysis patients in La Union</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-success">Research Gap:</h6>
+                                    <p>The situation at ASAP Tagudin Medical Diagnostic Center demonstrates the need for a platform that can analyze survival patterns, identify high-risk groups, and understand trends to improve decision-making.</p>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">Chronic kidney disease is emerging as a major health problem requiring better patient care solutions. According to global research, Mahmud and colleagues achieved 97% accuracy in predicting CKD using Gradient Boosting. Nationally, Villanueva and colleagues found that CKD treatment costs increase from PHP 44,610 to PHP 120,948 as the disease progresses. Locally, Reyes and Almojuela studied quality of life among hemodialysis patients in La Union. Healthcare facilities often struggle to identify patterns due to limited access to modern analysis tools, missing opportunities to identify risk factors and improve treatments. The situation at ASAP Tagudin Medical Diagnostic Center demonstrates the need for such a platform.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div id="slide-5" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">5</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Objectives</h2>
+                            <p class="text-center lead mb-4">The main objective of this study was to develop ASAP CKD Predictor: Machine Learning-Based Survival Analysis and Risk Assessment Tool for Hemodialysis Patient Data Visualization.</p>
+                            <h4 class="text-primary mb-3">Specifically, this study aims to:</h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="text-primary">1. Determine</h5>
+                                            <p>The current patient data management processes and CKD prediction methodologies used at ASAP Tagudin Medical Diagnostic Center.</p>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="text-primary">2. Identify</h5>
+                                            <p>The features integrated into the developed system for CKD prediction, survival analysis, and patient data visualization.</p>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="text-primary">3. Assess</h5>
+                                            <p>The level of usability of the proposed system using the System Usability Scale (SUS) questionnaire.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The main objective is to develop the ASAP CKD Predictor system. Specifically, the study aims to: first, determine current patient data management processes and CKD prediction methodologies used at ASAP Tagudin Medical Diagnostic Center; second, identify features integrated into the developed system for CKD prediction, survival analysis, and patient data visualization; and third, assess the level of usability of the proposed system using the System Usability Scale questionnaire.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div id="slide-6" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">6</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Conceptual Framework</h2>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card bg-primary text-white">
+                                        <div class="card-body">
+                                            <h5>INPUT</h5>
+                                            <ul>
+                                                <li>Patient demographic and clinical information</li>
+                                                <li>Healthcare professionals entering data</li>
+                                                <li>System administrators managing access</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-success text-white">
+                                        <div class="card-body">
+                                            <h5>PROCESS</h5>
+                                            <ul>
+                                                <li>Data processed through ML algorithms</li>
+                                                <li>Accurate CKD prediction and analytics</li>
+                                                <li>Reduced manual data processing</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-warning text-dark">
+                                        <div class="card-body">
+                                            <h5>OUTPUT</h5>
+                                            <ul>
+                                                <li>Comprehensive analytical insights</li>
+                                                <li>Interactive dashboard views</li>
+                                                <li>Evidence-based decision support</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The conceptual framework outlines a systematic interaction among input, process, and output components. The input phase involves patient demographic and clinical information entered by healthcare professionals, with system administrators managing user access. In the process phase, data inputs are processed through machine learning algorithms, making CKD prediction and analytics more accurate and efficient while reducing manual data processing and improving clinical decision-making. The output provides analytical insights, interactive dashboard views, and evidence-based decision support for healthcare professionals.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7 -->
+                    <div id="slide-7" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">7</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Scope and Limitations</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="text-success">Scope:</h4>
+                                    <ul>
+                                        <li><strong>Focus:</strong> CKD prediction and analytics system</li>
+                                        <li><strong>Location:</strong> ASAP Tagudin Medical Diagnostic Center, Tagudin, Ilocos Sur</li>
+                                        <li><strong>Timeline:</strong> October 2025</li>
+                                        <li><strong>Users:</strong> Healthcare professionals, medical researchers, and CKD patients</li>
+                                        <li><strong>Features:</strong> Web-based patient management, ML predictions, analytics dashboard</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="text-danger">Limitations:</h4>
+                                    <ul>
+                                        <li>Limited to ASAP Tagudin Medical Diagnostic Center only</li>
+                                        <li>Total enumeration sampling due to small population (6 healthcare professionals)</li>
+                                        <li>Dependent on internet connectivity and system functionality</li>
+                                        <li>Model accuracy tied to historical training data</li>
+                                        <li>May not generalize to different demographic populations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The study focuses on a CKD prediction and analytics system for hemodialysis patient data visualization at ASAP Tagudin Medical Diagnostic Center in Tagudin, Ilocos Sur, implemented in October 2025. The system serves healthcare professionals, medical researchers, and CKD patients with web-based patient management, machine learning predictions, and an analytics dashboard. Limitations include restriction to this medical center only; total enumeration sampling due to the small population of six healthcare professionals; dependence on internet connectivity and system functionality; model accuracy tied to historical training data; and possible limits in generalizing to other demographic populations.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8 -->
+                    <div id="slide-8" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">8</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Importance of the Study</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="text-primary"><i class="fas fa-user-md me-2"></i>Healthcare Professionals</h5>
+                                            <p>Access comprehensive patient data, generate CKD predictions, and make evidence-based clinical decisions.</p>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="text-primary"><i class="fas fa-microscope me-2"></i>Medical Researchers</h5>
+                                            <p>Analyze patient data patterns, conduct survival analysis studies, and generate research reports.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="text-primary"><i class="fas fa-cogs me-2"></i>System Administrators</h5>
+                                            <p>Manage patient records, monitor system performance, and ensure data security.</p>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="text-primary"><i class="fas fa-heart me-2"></i>Patients</h5>
+                                            <p>Benefit from improved healthcare delivery through accurate risk assessment and personalized treatment recommendations.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The study benefits multiple stakeholders. Healthcare professionals can access patient data, generate CKD predictions, and make evidence-based clinical decisions through the integrated dashboard. Medical researchers can analyze patient data patterns, conduct survival analysis, and generate research reports. System administrators can manage patient records, monitor system performance, and ensure data security. Patients benefit from improved healthcare through accurate risk assessment and personalized treatment recommendations. The proponents will increase their knowledge and expertise in developing healthcare analytics applications with machine learning integration.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9 -->
+                    <div id="slide-9" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">9</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Chapter 2 - Methodology</h2>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5><i class="fas fa-flask me-2"></i>Research Design</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p><strong>Descriptive Developmental Research Design</strong> - Gathers information related to the proposed system to determine efficiency performance level. Focuses on describing, contrasting, analyzing, and interpreting existing patient data and clinical outcomes.</p>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <h5><i class="fas fa-cogs me-2"></i>Development Model</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p><strong>Rapid Application Development (RAD) Model</strong> - Focuses on quickly adjusting to changes in project requirements. Fundamentally involves end-users throughout the entire process for continuous improvement.</p>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-warning text-dark">
+                                            <h5><i class="fas fa-clipboard-list me-2"></i>Data Gathering Methods</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><strong>Unstructured interviews</strong> with healthcare professionals</li>
+                                                <li><strong>Survey questionnaires</strong> using System Usability Scale (SUS)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The study employed a Descriptive Developmental Research Design to gather information about the proposed system and determine efficiency performance. The research focuses on describing, contrasting, analyzing, and interpreting existing patient data and clinical outcomes. For development, the proponents used the Rapid Application Development Model, which emphasizes quick adaptation to changing project requirements and continuous end-user involvement. Data gathering methods included unstructured interviews with healthcare professionals and survey questionnaires using the System Usability Scale.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10 -->
+                    <div id="slide-10" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">10</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Software/System Development Model</h2>
+                            <h4 class="text-primary mb-4">Rapid Application Development (RAD) Model Implementation:</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5>Phase 1: Requirements Planning</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Got permission from Mrs. Loreen C. Bayuga, Head Nurse</li>
+                                                <li>Gathered patient data for the study</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <h5>Phase 2: User Design</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Determined software functionality</li>
+                                                <li>Formalized essential application parts</li>
+                                                <li>Defined system requirements</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-warning text-dark">
+                                            <h5>Phase 3: Construction</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Built using Laravel PHP, MySQL, Python FastAPI</li>
+                                                <li>Implemented Bootstrap CSS, Chart.js, JavaScript</li>
+                                                <li>Added PDF generation and data export features</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-danger text-white">
+                                            <h5>Phase 4: Cutover</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Conducted practice runs</li>
+                                                <li>Identified potential issues before deployment</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The RAD model implementation included four phases. In Phase 1: Requirements Planning, permission was obtained from Mrs. Loreen C. Bayuga, Head Nurse of ASAP Tagudin Medical Diagnostic Center, and patient data was gathered. In Phase 2: User Design, the software functionality was determined, essential application components formalized, and system requirements defined. In Phase 3: Construction, the system was built using Laravel PHP, MySQL, and Python FastAPI, with Bootstrap CSS, Chart.js, JavaScript, and Blade templates, plus PDF generation and data export features. In Phase 4: Cutover, practice runs were conducted to test system functionality and identify potential issues before deployment.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 11 -->
+                    <div id="slide-11" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">11</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Population and Locale of the Study</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5><i class="fas fa-map-marker-alt me-2"></i>Study Location</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p><strong>ASAP Tagudin Medical Diagnostic Center</strong><br>Tagudin, Ilocos Sur</p>
+                                            <p>Serves rural communities in Ilocos Sur</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header bg-success text-white">
+                                            <h5><i class="fas fa-users me-2"></i>Population</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p><strong>Total Population:</strong> 6 healthcare professionals</p>
+                                            <p><strong>Sample Size:</strong> 6 (Total Enumeration)</p>
+                                            <p><strong>Distribution:</strong><br>
+                                            • Head Nurse: 1<br>
+                                            • Nursing Staff: 5</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <div class="card bg-info text-white">
+                                        <div class="card-body">
+                                            <h5><i class="fas fa-calculator me-2"></i>Sampling Technique</h5>
+                                            <p><strong>Total Enumeration Sampling</strong> - Used due to small population size (N ≤ 30). Ensures 100% representation of the target population.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The study was conducted at ASAP Tagudin Medical Diagnostic Center in Tagudin, Ilocos Sur, which serves rural communities. The total population consists of six healthcare professionals, with a sample size of six using total enumeration. The distribution includes one Head Nurse and five Nursing Staff members. Total enumeration sampling was used due to the small population size, ensuring complete representation of the target population.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 12 -->
+                    <div id="slide-12" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">12</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Data Analysis Techniques</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5><i class="fas fa-poll me-2"></i>System Usability Scale (SUS) Analysis</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><strong>10 questions</strong> answered using a 5-point scale</li>
+                                                <li><strong>SUS Score:</strong> 73.33 (Grade B - Good)</li>
+                                                <li><strong>Standard Deviation:</strong> 15.42</li>
+                                                <li><strong>Score Range:</strong> 35-90</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <h5><i class="fas fa-brain me-2"></i>Machine Learning Model Validation</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><strong>Accuracy:</strong> 97% in CKD stage prediction</li>
+                                                <li><strong>Methods:</strong> Accuracy, precision, recall, F1-score</li>
+                                                <li><strong>Analysis:</strong> ROC curve, cross-validation</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">For the System Usability Scale, participants answered 10 questions using a 5-point scale, resulting in a score of 73.33, which corresponds to Grade B, indicating Good usability. The standard deviation was 15.42, with a score range of 35 to 90. For machine learning model validation, the system achieved 97% accuracy in CKD stage prediction, validated through accuracy, precision, recall, F1-score, ROC curve analysis, and cross-validation.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 13 -->
+                    <div id="slide-13" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">13</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Key Features Demonstration</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5><i class="fas fa-user-injured me-2"></i>Patient Management Module</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Complete CRUD operations for patient records</li>
+                                                <li>Demographics, medical history, and lab results management</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-danger text-white">
+                                            <h5><i class="fas fa-brain me-2"></i>CKD Prediction Interface</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Machine learning-based risk assessment (97% accuracy)</li>
+                                                <li>Survival analysis using Cox Regression Models</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <h5><i class="fas fa-chart-bar me-2"></i>Analytics Dashboard</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Interactive visualizations with Chart.js</li>
+                                                <li>Patient demographics, survival curves, risk factor analysis</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-warning text-dark">
+                                            <h5><i class="fas fa-file-export me-2"></i>Export Features</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>CSV and PDF data exports</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The system includes four main features. The Patient Management Module provides complete CRUD operations for patient records and manages demographics, medical history, and lab results. The CKD Prediction Interface uses machine learning for risk assessment with 97% accuracy and includes survival analysis via Cox Regression Models. The Analytics Dashboard offers interactive visualizations using Chart.js, showing patient demographics, survival curves, and risk factor analysis. Export Features enable data exports in CSV and PDF formats.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 14 -->
+                    <div id="slide-14" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">14</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Technical Architecture</h2>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5><i class="fas fa-server me-2"></i>Backend</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Laravel PHP Framework</li>
+                                                <li>MySQL Database</li>
+                                                <li>Python FastAPI (ML Service)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header bg-success text-white">
+                                            <h5><i class="fas fa-desktop me-2"></i>Frontend</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Bootstrap CSS</li>
+                                                <li>Chart.js</li>
+                                                <li>JavaScript</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header bg-warning text-dark">
+                                            <h5><i class="fas fa-robot me-2"></i>Machine Learning</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Random Forest Classifier (Risk Assessment)</li>
+                                                <li>Cox Proportional Hazards Model (Survival Analysis)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The technical architecture utilizes a comprehensive technology stack. For the backend, the proponents implemented the Laravel PHP Framework, MySQL Database, and Python FastAPI for the machine learning service. The frontend uses Bootstrap CSS, Chart.js, and JavaScript for interactive functionality. Machine learning implementation includes Random Forest Classifier for risk assessment and Cox Proportional Hazards Model for survival analysis.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 15 -->
+                    <div id="slide-15" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">15</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Key Features Demonstration</h2>
+                            <p class="text-center lead mb-4">[Same as Slide 13 - Duplicate for emphasis during demonstration]</p>
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>This slide can be skipped or used for emphasis during demonstration.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 16 -->
+                    <div id="slide-16" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">16</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Chapter 3 - Results and Discussion</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-danger text-white">
+                                            <h5>Current Patient Data Management</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Manual paper-based record keeping</li>
+                                                <li>Simple spreadsheet tracking</li>
+                                                <li>Time-consuming data entry processes</li>
+                                                <li>Limited reporting capabilities</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <h5>Developed System Features</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Patient Management Module (CRUD operations)</li>
+                                                <li>CKD Prediction Interface (ML-based)</li>
+                                                <li>Analytics Dashboard (interactive visualizations)</li>
+                                                <li>Export Features (CSV/PDF reporting)</li>
+                                                <li>Educational Resources</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The findings reveal two primary areas. Regarding current patient data management at ASAP TMDC, the center uses manual paper-based record keeping and simple spreadsheet tracking, resulting in time-consuming data entry processes and limited reporting capabilities. The developed system addresses these issues through multiple features, including a Patient Management Module with CRUD operations, a CKD Prediction Interface using ML-based risk assessment, an Analytics Dashboard with interactive visualizations, Export Features for CSV and PDF reporting, and Educational Resources about CKD management.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 17 -->
+                    <div id="slide-17" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">17</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Findings - System Features</h2>
+                            <p class="text-center lead mb-4">The ASAP CKD Predictor System Includes:</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5><i class="fas fa-user-injured me-2"></i>Patient Management Module</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Complete patient records with demographics, medical history, lab results</li>
+                                                <li>Full CRUD operations for data management</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-danger text-white">
+                                            <h5><i class="fas fa-brain me-2"></i>CKD Prediction Interface</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Machine learning-based risk assessment</li>
+                                                <li>CKD stage classification</li>
+                                                <li>High-risk patient identification</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <h5><i class="fas fa-chart-bar me-2"></i>Analytics Dashboard</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Interactive charts and graphs</li>
+                                                <li>Age group analysis, survival rates, trends</li>
+                                                <li>Pattern recognition for decision-making</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-warning text-dark">
+                                            <h5><i class="fas fa-book me-2"></i>Reporting & Educational Resources</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Detailed reports in multiple formats</li>
+                                                <li>CKD management best practices</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The ASAP CKD Predictor System includes four key components. The Patient Management Module maintains complete patient records with demographics, medical history, and lab results, supported by full CRUD operations. The CKD Prediction Interface provides machine learning-based risk assessment, CKD stage classification, and high-risk patient identification. The Analytics Dashboard features interactive charts and graphs showing age group analysis, survival rates, trends, and pattern recognition to support decision-making. Reporting and Educational Resources offer detailed reports in multiple formats and best practices for CKD management.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 18 -->
+                    <div id="slide-18" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">18</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Findings - Usability Assessment</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white text-center">
+                                            <h2>SUS Score: 73.33</h2>
+                                            <p class="mb-0">(Grade B - Good)</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><strong>Standard Deviation:</strong> 15.42</li>
+                                                <li><strong>Score Range:</strong> 35-90</li>
+                                                <li><strong>Sample Size:</strong> 6 healthcare professionals</li>
+                                                <li>• Head Nurse: 1</li>
+                                                <li>• Nursing Staff: 5</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5><i class="fas fa-check-circle me-2"></i>Interpretation</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Healthcare workers found the system easy to use</li>
+                                                <li>System is functional, reliable, and efficient</li>
+                                                <li>Validated for healthcare data analysis and patient management</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">The System Usability Scale results indicate a score of 73.33, corresponding to Grade B and a Good usability rating. The standard deviation was 15.42, with a score range of 35 to 90. The sample size consisted of 6 healthcare professionals, including one Head Nurse and five Nursing Staff members. The interpretation reveals that healthcare workers found the system easy to use, and the system is functional, reliable, and efficient for healthcare data analysis and patient management.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 19 -->
+                    <div id="slide-19" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">19</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Conclusions</h2>
+                            <p class="text-center lead mb-4">Based on the research findings:</p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-danger text-white">
+                                            <h5>1. Manual System Limitations</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>ASAP TMDC uses manual patient data management</li>
+                                                <li>Lacks systematic CKD analysis and risk assessment tools</li>
+                                                <li>Challenges in managing growing CKD patient population</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <h5>2. System Effectiveness</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>ASAP CKD Predictor provides working features for patient data management</li>
+                                                <li>Successfully manages CKD data using machine learning and interactive charts</li>
+                                                <li>Delivers comprehensive analytics from end to end</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5>3. User Satisfaction</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>System meets user needs and satisfaction</li>
+                                                <li>SUS score of 73.33 (Good rating)</li>
+                                                <li>Web-based system improves manual processes and clinical decision-making</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">Based on the research findings, three conclusions can be drawn. First, regarding manual system limitations, ASAP TMDC uses manual patient data management, lacks systematic CKD analysis and risk assessment tools, and faces challenges in managing a growing CKD patient population. Second, regarding system effectiveness, the ASAP CKD Predictor provides working features for patient data management, successfully manages CKD data using machine learning and interactive charts, and delivers comprehensive analytics. Third, regarding user satisfaction, the system meets user needs, achieved a SUS score of 73.33 indicating Good rating, and the web-based system improves manual processes and clinical decision-making.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 20 -->
+                    <div id="slide-20" class="slide-container bg-light position-relative" style="display: none;">
+                        <div class="slide-number">20</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title">Recommendations</h2>
+                            <p class="text-center lead mb-4">Based on findings and conclusions:</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5>1. System Implementation</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>ASAP TMDC should adopt the new system to improve manual patient data management</li>
+                                                <li>Enhance clinical decision-making processes</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-warning text-dark">
+                                            <h5>2. Training Assessment</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Evaluate healthcare worker training needs</li>
+                                                <li>Identify areas requiring additional support</li>
+                                                <li>Address knowledge gaps in computer-based healthcare analytics</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">
+                                            <h5>3. User Training Program</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Train all system users on complete features and functions</li>
+                                                <li>Focus on patient data management, CKD prediction tools, and analytics dashboard</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-info text-white">
+                                            <h5>4. Future Enhancements</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>Add new features based on user needs</li>
+                                                <li>Improve machine learning algorithms</li>
+                                                <li>Integrate with other healthcare systems</li>
+                                                <li>Expand clinical information capabilities</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="script-box">
+                                <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
+                                <div class="script-text">Based on the findings and conclusions, four recommendations are proposed. First, regarding system implementation, ASAP TMDC should adopt the new system to improve manual patient data management and enhance clinical decision-making processes. Second, regarding training assessment, the institution should evaluate healthcare worker training needs, identify areas requiring additional support, and address knowledge gaps in computer-based healthcare analytics. Third, regarding the user training program, all system users should be trained on complete features and functions, with focus on patient data management, CKD prediction tools, and the analytics dashboard. Fourth, regarding future enhancements, new features should be added based on user needs, machine learning algorithms should be improved, and integration with other healthcare systems and expansion of clinical information capabilities should be pursued.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 21 - Closing Script -->
+                    <div id="slide-21" class="slide-container bg-gradient position-relative" style="display: none; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white;">
+                        <div class="slide-number" style="background: rgba(255,255,255,0.3);">21</div>
+                        <div class="slide-content">
+                            <h2 class="slide-title" style="color: white;">Closing Statement</h2>
+                            <div class="text-center">
+                                <p class="lead mb-4">In conclusion, the ASAP CKD Predictor successfully addresses the identified problems at ASAP Tagudin Medical Diagnostic Center through a comprehensive machine learning-based system that improves patient data management, risk assessment, and clinical decision-making.</p>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="card bg-white text-dark">
+                                            <div class="card-body text-center">
+                                                <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
+                                                <h3>97%</h3>
+                                                <p>ML Prediction Accuracy</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-white text-dark">
+                                            <div class="card-body text-center">
+                                                <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+                                                <h3>73.33</h3>
+                                                <p>SUS Usability Score (Good)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mt-4 lead">The system's 97% accuracy and 73.33 SUS score demonstrate its effectiveness and usability for healthcare professionals.</p>
+                                <p class="lead mt-3"><strong>Thank you for your attention. The proponents are now ready to answer any questions.</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide Navigation -->
+                    <div class="slide-navigation">
+                        <button class="slide-btn" onclick="previousSlide()" id="prevBtn">
+                            <i class="fas fa-chevron-left me-2"></i>Previous
+                        </button>
+                        <button class="slide-btn" onclick="nextSlide()" id="nextBtn">
+                            Next<i class="fas fa-chevron-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ Section -->
     <section id="faq" class="py-5 bg-light">
         <div class="container">
@@ -1532,6 +2640,76 @@
 
         // Initially hide scroll to top button
         document.querySelector('.scroll-to-top').style.display = 'none';
+
+        // Defense Script Slide Navigation
+        let currentSlide = 1;
+        const totalSlides = 21;
+
+        function showSlide(slideNumber) {
+            // Hide all slides
+            for (let i = 1; i <= totalSlides; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                const listItem = document.querySelector(`.slides-list-item:nth-child(${i + 1})`);
+                
+                if (slide) {
+                    slide.style.display = 'none';
+                }
+                if (listItem) {
+                    listItem.classList.remove('active');
+                }
+            }
+
+            // Show current slide
+            const currentSlideElement = document.getElementById(`slide-${slideNumber}`);
+            const currentListItem = document.querySelector(`.slides-list-item:nth-child(${slideNumber + 1})`);
+            
+            if (currentSlideElement) {
+                currentSlideElement.style.display = 'block';
+            }
+            if (currentListItem) {
+                currentListItem.classList.add('active');
+            }
+
+            currentSlide = slideNumber;
+
+            // Update navigation buttons
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentSlide === 1;
+            nextBtn.disabled = currentSlide === totalSlides;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Initialize first slide
+        showSlide(1);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('defense-script') && 
+                document.getElementById('slide-1').offsetParent !== null) {
+                if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    previousSlide();
+                }
+            }
+        });
     </script>
 </body>
 </html>
