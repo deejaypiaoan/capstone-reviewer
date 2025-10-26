@@ -43,6 +43,80 @@
             color: #ffffff !important;
         }
 
+        /* Search Bar Styles */
+        .search-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .search-input {
+            border: 2px solid var(--accent-color);
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-results {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+
+        .search-result-item {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-result-item:hover {
+            background: var(--light-bg);
+        }
+
+        .search-result-item.highlight {
+            background: #fef3c7;
+        }
+
+        .search-highlight {
+            background: yellow;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Technical Terms Explanation Styles */
+        .tech-term {
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: help;
+            border-bottom: 2px dotted var(--accent-color);
+        }
+
+        .tech-explanation {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .tech-explanation h6 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
         .hero-section {
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
@@ -300,6 +374,11 @@
             .hero-subtitle {
                 font-size: 1rem;
             }
+
+            /* Mobile Menu Auto-close */
+            .navbar-collapse {
+                max-height: none;
+            }
         }
 
         .slide-container {
@@ -373,6 +452,15 @@
             font-style: italic;
         }
 
+        .script-box .script-text ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .script-box .script-text li {
+            margin-bottom: 0.5rem;
+        }
+
         .slide-navigation {
             display: flex;
             justify-content: center;
@@ -443,6 +531,18 @@
     </style>
 </head>
 <body>
+    <!-- Search Bar -->
+    <div class="search-container" id="searchContainer">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-search me-2 text-primary"></i>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for topics, concepts, or information...">
+            <button class="btn btn-link text-danger ms-2" onclick="closeSearch()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
@@ -450,7 +550,10 @@
                 <i class="fas fa-heartbeat me-2"></i>
                 ASAP CKD Predictor
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="btn btn-light btn-sm d-lg-none" onclick="toggleSearch()" style="margin-right: 10px;">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -941,6 +1044,31 @@
                     <div class="challenge-item">
                         <h6><i class="fas fa-chart-line text-danger me-2"></i>Model Accuracy</h6>
                         <p>Achieving high prediction accuracy (97%) while ensuring the machine learning models are clinically relevant and interpretable for healthcare professionals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Terms Explanation Section -->
+    <section class="py-3 bg-white">
+        <div class="container">
+            <div class="tech-explanation">
+                <h6><i class="fas fa-brain me-2"></i>Understanding the Machine Learning Terms Used in This System:</h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong><span class="tech-term" title="Ensemble learning method using multiple decision trees to make predictions">Random Forest Classifier</span>:</strong><br>
+                        Imagine multiple doctors examining a patient independently and combining their opinions. Random Forest works similarly by creating many decision trees and taking the average prediction for more accurate results. We use this for risk assessment.</p>
+                        
+                        <p><strong><span class="tech-term" title="Statistical method for analyzing time-to-event data">Cox Regression / Cox Proportional Hazards</span>:</strong><br>
+                        A statistical method that predicts how long patients with CKD might survive based on their clinical factors. It analyzes time-to-event data (like survival time) while accounting for multiple risk factors simultaneously.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong><span class="tech-term" title="Statistical method for estimating survival probability over time">Kaplan-Meier Analysis</span>:</strong><br>
+                        A method to visualize and estimate the probability of survival over time. It creates survival curves showing what percentage of patients are still alive at different time points.</p>
+                        
+                        <p><strong><span class="tech-term" title="Machine learning technique that combines weak learners to create a strong predictive model">Gradient Boosting</span>:</strong><br>
+                        An advanced machine learning technique that improves predictions by combining multiple simple models, each learning from the previous one's mistakes. This approach achieved our 97% accuracy rate.</p>
                     </div>
                 </div>
             </div>
@@ -1536,7 +1664,13 @@
                             </div>
                             <div class="script-box">
                                 <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
-                                <div class="script-text">Good [morning/afternoon]. The proponents would like to present the ASAP CKD Predictor: a Machine Learning-Based Survival Analysis and Risk Assessment Tool for Hemodialysis Patient Data Visualization. This capstone project is submitted in partial fulfillment of the requirements for the degree of Bachelor of Science in Information Technology at Ilocos Sur Polytechnic State College.</div>
+                                <div class="script-text">
+                                    Good [morning/afternoon]. The proponents would like to present:<br>
+                                    • The ASAP CKD Predictor<br>
+                                    • A machine learning-based system for survival analysis<br>
+                                    • Submitted in partial fulfillment of requirements for BSIT degree<br>
+                                    • At Ilocos Sur Polytechnic State College
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1578,7 +1712,13 @@
                             </div>
                             <div class="script-box">
                                 <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
-                                <div class="script-text">The research team consists of four members with distinct roles: Deejay Piaoan serving as Project Manager and Developer; John Enrique Dela Cruz and Hanz Inaki Garcia as System Analysts and Designers; John Michael Foster as the Documenter and Technical Writer; with Piaoan and Dela Cruz also serving as Programmers and Developers. Each member contributed to coordinating activities, resolving technical challenges, and building the comprehensive system.</div>
+                                <div class="script-text">
+                                    The research team has four members:<br>
+                                    • Deejay Piaoan - Project Manager & Developer<br>
+                                    • John Enrique Dela Cruz - System Analyst, Programmer<br>
+                                    • Hanz Inaki Garcia - System Designer, Documenter<br>
+                                    • John Michael Foster - Technical Writer
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1633,7 +1773,13 @@
                             </div>
                             <div class="script-box">
                                 <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
-                                <div class="script-text">Chronic kidney disease is emerging as a major health problem requiring better patient care solutions. According to global research, Mahmud and colleagues achieved 97% accuracy in predicting CKD using Gradient Boosting. Nationally, Villanueva and colleagues found that CKD treatment costs increase from PHP 44,610 to PHP 120,948 as the disease progresses. Locally, Reyes and Almojuela studied quality of life among hemodialysis patients in La Union. Healthcare facilities often struggle to identify patterns due to limited access to modern analysis tools, missing opportunities to identify risk factors and improve treatments. The situation at ASAP Tagudin Medical Diagnostic Center demonstrates the need for such a platform.</div>
+                                <div class="script-text">
+                                    CKD is a major health problem requiring better solutions:<br>
+                                    • <strong>Global:</strong> Mahmud et al. achieved 97% accuracy using machine learning<br>
+                                    • <strong>National:</strong> CKD costs increase from PHP 44,610 to PHP 120,948<br>
+                                    • <strong>Local:</strong> Reyes & Almojuela studied hemodialysis patients in La Union<br>
+                                    • Hospitals lack modern analysis tools, missing opportunities to improve patient care
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1669,7 +1815,12 @@
                             </div>
                             <div class="script-box">
                                 <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
-                                <div class="script-text">The main objective is to develop the ASAP CKD Predictor system. Specifically, the study aims to: first, determine current patient data management processes and CKD prediction methodologies used at ASAP Tagudin Medical Diagnostic Center; second, identify features integrated into the developed system for CKD prediction, survival analysis, and patient data visualization; and third, assess the level of usability of the proposed system using the System Usability Scale questionnaire.</div>
+                                <div class="script-text">
+                                    Objectives:<br>
+                                    • <strong>Determine</strong> current patient data management at ASAP TMDC<br>
+                                    • <strong>Identify</strong> features for CKD prediction and survival analysis<br>
+                                    • <strong>Assess</strong> system usability using SUS questionnaire
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1683,9 +1834,22 @@
                             <div class="text-center mb-4">
                                 <img src="conceptual_framework.jpg" alt="Conceptual Framework Diagram" class="img-fluid rounded shadow" style="max-height: 700px;">
                             </div>
+                            <div class="tech-explanation">
+                                <h6><i class="fas fa-info-circle me-2"></i>Key Components:</h6>
+                                <ul class="mb-0">
+                                    <li><strong>Input:</strong> Patient demographics, clinical data, lab values, treatment information</li>
+                                    <li><strong>Process:</strong> Machine learning algorithms (<span class="tech-term" title="Ensemble machine learning method using multiple decision trees">Random Forest</span>, <span class="tech-term" title="Statistical model for analyzing survival times and hazard ratios">Cox Regression</span>) for predictions</li>
+                                    <li><strong>Output:</strong> Risk assessments, survival probabilities, analytics dashboard, clinical insights</li>
+                                </ul>
+                            </div>
                             <div class="script-box">
                                 <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
-                                <div class="script-text">Moving to Slide 6, the Conceptual Framework. This diagram visually represents the systematic approach of the ASAP CKD Predictor. It delineates the three primary stages: Input, Process, and Output. The Input stage gathers comprehensive patient data, including demographics, clinical parameters, and comorbidity information. This data then flows into the Process stage, which is the core of the system—the ASAP CKD Predictor itself, utilizing machine learning for survival analysis and data visualization. Finally, the Output stage delivers actionable insights, dashboard views, and crucial decision support for healthcare professionals. This structured approach ensures that raw patient data is transformed into valuable clinical intelligence.</div>
+                                <div class="script-text">
+                                    The conceptual framework shows three stages:<br>
+                                    • <strong>Input:</strong> Patient data, lab results, demographics<br>
+                                    • <strong>Process:</strong> Machine learning analyzes data using Random Forest and Cox Regression<br>
+                                    • <strong>Output:</strong> Risk predictions, survival analysis, clinical insights
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1719,7 +1883,14 @@
                             </div>
                             <div class="script-box">
                                 <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
-                                <div class="script-text">The study focuses on a CKD prediction and analytics system for hemodialysis patient data visualization at ASAP Tagudin Medical Diagnostic Center in Tagudin, Ilocos Sur, implemented in October 2025. The system serves healthcare professionals, medical researchers, and CKD patients with web-based patient management, machine learning predictions, and an analytics dashboard. Limitations include restriction to this medical center only; total enumeration sampling due to the small population of six healthcare professionals; dependence on internet connectivity and system functionality; model accuracy tied to historical training data; and possible limits in generalizing to other demographic populations.</div>
+                                <div class="script-text">
+                                    <strong>Scope:</strong> CKD system at ASAP TMDC in Tagudin, Ilocos Sur - October 2025<br>
+                                    <strong>Limitations:</strong><br>
+                                    • Limited to ASAP TMDC only<br>
+                                    • 6 healthcare professionals (total enumeration)<br>
+                                    • Dependent on internet and system functionality<br>
+                                    • Model tied to historical data
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1804,7 +1975,11 @@
                             </div>
                             <div class="script-box">
                                 <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script:</div>
-                                <div class="script-text">The study employed a Descriptive Developmental Research Design to gather information about the proposed system and determine efficiency performance. The research focuses on describing, contrasting, analyzing, and interpreting existing patient data and clinical outcomes. For development, the proponents used the Rapid Application Development Model, which emphasizes quick adaptation to changing project requirements and continuous end-user involvement. Data gathering methods included unstructured interviews with healthcare professionals and survey questionnaires using the System Usability Scale.</div>
+                                <div class="script-text">
+                                    <strong>Research Design:</strong> Descriptive Developmental - analyze system efficiency<br>
+                                    <strong>Development Model:</strong> RAD (Rapid Application Development)<br>
+                                    <strong>Data Gathering:</strong> Interviews & System Usability Scale (SUS) questionnaires
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2675,6 +2850,99 @@
                     previousSlide();
                 }
             }
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const searchContainer = document.getElementById('searchContainer');
+
+        // Initially hide search container
+        searchContainer.style.display = 'none';
+
+        function toggleSearch() {
+            if (searchContainer.style.display === 'none' || searchContainer.style.display === '') {
+                searchContainer.style.display = 'block';
+                searchInput.focus();
+            } else {
+                searchContainer.style.display = 'none';
+            }
+        }
+
+        function closeSearch() {
+            searchContainer.style.display = 'none';
+            searchInput.value = '';
+            searchResults.innerHTML = '';
+        }
+
+        // Search implementation
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            // Define searchable content
+            const searchableContent = [
+                { title: 'Machine Learning Models', content: 'Random Forest Classifier, Cox Regression, Gradient Boosting', link: '#ckd-process' },
+                { title: '97% Accuracy', content: 'Achieved through Random Forest Classifier with 112 patient records', link: '#overview' },
+                { title: 'Random Forest Classifier', content: 'Used for risk assessment and CKD prediction with high accuracy', link: '#ckd-process' },
+                { title: 'Cox Regression Model', content: 'Used for survival analysis predicting 6-month, 12-month, and 24-month survival', link: '#ckd-process' },
+                { title: 'Kaplan-Meier Analysis', content: 'Statistical method used for survival curve visualization and time-to-event analysis', link: '#ml-analytics' },
+                { title: 'System Usability Scale', content: 'SUS score of 73.33 (Grade B - Good) evaluated by 6 healthcare professionals', link: '#impact' },
+                { title: 'Patient Management', content: 'CRUD operations for patient records with demographics and clinical data', link: '#database' },
+                { title: '112 Active Patients', content: 'Patient data from Mrs. Loreen C. Bayuga, Head Nurse of ASAP Tagudin Medical Diagnostic Center', link: '#overview' },
+                { title: 'Technical Architecture', content: 'Laravel PHP backend, Python FastAPI ML service, MySQL database', link: '#ml-analytics' },
+                { title: 'Rapid Application Development', content: 'RAD model with 4 phases: Requirements Planning, User Design, Construction, Cutover', link: '#methodology' }
+            ];
+
+            // Filter matching results
+            const matches = searchableContent.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.content.toLowerCase().includes(query)
+            );
+
+            // Display results
+            if (matches.length > 0) {
+                searchResults.innerHTML = matches.map(item => `
+                    <div class="search-result-item" onclick="handleSearchClick('${item.link}')">
+                        <strong>${item.title}</strong><br>
+                        <small>${item.content}</small>
+                    </div>
+                `).join('');
+            } else {
+                searchResults.innerHTML = '<div class="text-center p-3">No results found</div>';
+            }
+        });
+
+        function handleSearchClick(link) {
+            closeSearch();
+            setTimeout(() => {
+                document.querySelector(link).scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        // Mobile menu auto-close on navigation click
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Check if we're on mobile (navbar is collapsed)
+                if (window.getComputedStyle(navbarToggler).display !== 'none') {
+                    // Close the mobile menu
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                        toggle: true
+                    });
+                    // Force hide after transition
+                    setTimeout(() => {
+                        navbarCollapse.classList.remove('show');
+                    }, 350);
+                }
+            });
         });
     </script>
 </body>
