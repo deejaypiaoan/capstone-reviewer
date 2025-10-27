@@ -423,6 +423,22 @@
             .navbar .navbar-nav {
                 margin-top: 0.5rem;
             }
+
+            /* Full text display for navigation links - prevent truncation */
+            .navbar-nav .nav-link {
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+                white-space: normal;
+                word-wrap: break-word;
+                width: 100%;
+                text-align: left;
+                display: block;
+            }
+
+            /* Ensure proper width for mobile nav */
+            .navbar-collapse {
+                width: 100%;
+            }
         }
 
         @media (max-width: 576px) {
@@ -437,6 +453,12 @@
 
             .navbar-toggler {
                 padding: 0.25rem 0.5rem;
+            }
+
+            /* Fix truncated text on extra small screens */
+            .navbar-nav .nav-link {
+                font-size: 0.95rem;
+                padding: 0.625rem 0.875rem;
             }
         }
 
