@@ -484,6 +484,11 @@
                 margin-left: 0 !important;
                 margin-right: 0 !important;
             }
+
+            /* Defense Script sizing */
+            .slide-title { font-size: 1.5rem; }
+            .script-box .script-text { font-size: 0.95rem; line-height: 1.6; }
+            .slide-content .lead, .slide-content li, .slide-content p { font-size: 0.95rem; }
         }
 
         @media (max-width: 576px) {
@@ -503,10 +508,7 @@
             }
 
             /* Fix truncated text on extra small screens */
-            .navbar-nav .nav-link {
-                font-size: 0.8rem;
-                padding: 0.35rem 0.6rem;
-            }
+            .navbar-nav .nav-link { font-size: 0.8rem; padding: 0.35rem 0.6rem; }
 
             /* Ensure left alignment on extra small screens */
             .navbar-nav {
@@ -516,9 +518,12 @@
             }
 
             /* Smaller gap between buttons */
-            .navbar .d-flex {
-                gap: 0.2rem;
-            }
+            .navbar .d-flex { gap: 0.2rem; }
+
+            /* Defense Script extra small sizing */
+            .slide-title { font-size: 1.3rem; }
+            .script-box .script-text { font-size: 0.9rem; }
+            .slide-content .lead, .slide-content li, .slide-content p { font-size: 0.9rem; }
         }
 
         .slide-container {
@@ -1763,7 +1768,7 @@
                 <div class="col-lg-3">
                     <div class="slides-list">
                         <h6><i class="fas fa-list me-2"></i>Official Presentation Slides</h6>
-                        <div class="slides-list-item active" onclick="showSlide(1)">Slide 1: Title</div>
+                        <div class="slides-list-item active" onclick="showSlide(1)">Slide 1: Background of the Study</div>
                         <div class="slides-list-item" onclick="showSlide(2)">Slide 2: Objectives</div>
                         <div class="slides-list-item" onclick="showSlide(3)">Slide 3: Scope & Limitations</div>
                         <div class="slides-list-item" onclick="showSlide(4)">Slide 4: RAD Software Model</div>
@@ -1780,28 +1785,23 @@
 
                 <!-- Slide Content -->
                 <div class="col-lg-9">
-                    <!-- Slide 1: Title -->
+                    <!-- Slide 1: Background of the Study -->
                     <div id="slide-1" class="slide-container bg-light position-relative">
                         <div class="slide-number">1</div>
                         <div class="slide-content">
-                            <h2 class="slide-title">ASAP CKD Predictor</h2>
-                            <div class="text-center mb-4">
-                                <h4 class="text-primary mb-3">Machine Learning-Based Survival Analysis and Risk Assessment Tool</h4>
-                                <p class="lead">for Hemodialysis Patient Data Visualization</p>
-                                <div class="mt-4">
-                                    <p><strong>Presented by:</strong></p>
-                                    <p>John Enrique C. Dela Cruz<br>Hanz Inaki B. Garcia<br>John Michael Foster<br>Deejay D. Piaoan</p>
-                                    <p class="mt-3"><strong>Bachelor of Science in Information Technology</strong><br>Ilocos Sur Polytechnic State College<br>October 2025</p>
-                                </div>
-                            </div>
+                            <h2 class="slide-title">Background of the Study</h2>
+                            <ul class="lead" style="max-width:900px;margin:0 auto 1rem auto;">
+                                <li><strong>Relevance and need:</strong> Chronic Kidney Disease continues to burden Filipino communities. The ASAP CKD Predictor delivers practical support for hemodialysis care through machine learning–driven risk assessment and survival analysis used at ASAP TMDC.</li>
+                                <li><strong>Documented gap:</strong> While national reports show <strong>11.2% CKD prevalence</strong> and <strong>one Filipino developing kidney failure every hour</strong> (Daily Tribune, 2025), and economic analyses estimate a <strong>₱592.15B burden</strong> (Villanueva et&nbsp;al., 2025), existing studies remain macro-level. This project fills the gap with a <strong>clinic‑ready, locally trained tool</strong> built on 112 ASAP TMDC records.</li>
+                                <li><strong>Alignment with SDG 3 (Good Health and Well‑Being):</strong> Improves early risk detection, supports evidence‑based decisions, and enhances quality of care for CKD patients.</li>
+                            </ul>
                             <div class="script-box">
                                 <div class="script-label"><i class="fas fa-microphone me-2"></i>Presentation Script (3-4 minutes):</div>
                                 <div class="script-text">
                                     <strong>Did you know?</strong> CKD affects <strong>11.2% of Filipinos</strong> and <strong>one Filipino develops kidney failure every hour</strong> (Daily Tribune, 2025).<br><br>
-                                    <strong>Good morning/afternoon, honorable panelists.</strong><br><br>
-                                    We are presenting the ASAP CKD Predictor: Machine Learning-Based Survival Analysis and Risk Assessment Tool for Hemodialysis Patient Data Visualization.<br><br>
-                                    This capstone project was developed to address the growing challenge of chronic kidney disease management at ASAP Tagudin Medical Diagnostic Center in Tagudin, Ilocos Sur.<br><br>
-                                    Our system integrates machine learning algorithms with interactive data visualization to provide healthcare professionals with evidence-based decision support tools for CKD patient care.
+                                    <strong>Good morning/afternoon, honorable panelists.</strong> The background of this study centers on a pressing clinical need at ASAP Tagudin Medical Diagnostic Center. The research team designed a clinic‑ready platform that transforms routinely collected hemodialysis data into <strong>actionable risk and survival insights</strong> to support timely decisions.<br><br>
+                                    Prior national and regional works outlined prevalence, costs, and calls for earlier detection (Villanueva et&nbsp;al., 2025; Makmun et&nbsp;al., 2024), yet <strong>no deployable, local decision‑support tool</strong> existed for rural centers. This project fills that gap with a locally trained model using <strong>112</strong> patient records and interpretable analytics.<br><br>
+                                    Ultimately, the study advances <strong>SDG 3</strong> by enabling earlier intervention and better outcomes for CKD patients through evidence‑based, machine‑learning–assisted care.
                                 </div>
                             </div>
                         </div>
