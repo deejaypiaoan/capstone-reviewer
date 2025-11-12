@@ -793,6 +793,9 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#challenges">Challenges</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#demonstration">Demo</a>
                     </li>
                     <li class="nav-item">
@@ -3160,11 +3163,33 @@
             }, 100);
         }
 
-        // Mobile menu auto-close on navigation click
-        const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
+        // Prevent navbar from closing when clicking dropdown toggles on mobile
         const navbarToggler = document.querySelector('.navbar-toggler');
         const navbarCollapse = document.querySelector('.navbar-collapse');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
+        // Prevent navbar collapse when clicking dropdown toggles on mobile
+        // Use capture phase to intercept before Bootstrap's handlers
+        document.addEventListener('click', function(event) {
+            const isDropdownToggle = event.target.closest('.dropdown-toggle');
+            const isDropdownMenu = event.target.closest('.dropdown-menu');
+            const isInsideDropdown = event.target.closest('.dropdown');
+            
+            // If clicking on dropdown toggle or inside dropdown menu on mobile, prevent navbar collapse
+            if ((isDropdownToggle || isDropdownMenu || isInsideDropdown) && 
+                window.getComputedStyle(navbarToggler).display !== 'none') {
+                // Only stop propagation if clicking on toggle or menu (not dropdown items)
+                if (isDropdownToggle || (isDropdownMenu && !event.target.closest('.dropdown-item'))) {
+                    event.stopPropagation();
+                }
+            }
+        }, true); // Use capture phase to catch events early
+
+        // Mobile menu auto-close on navigation click (but not on dropdown toggles)
+        const navLinks = document.querySelectorAll('.nav-link:not(.dropdown-toggle)');
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+        // Close navbar when clicking regular nav links (not dropdown toggles)
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 // Check if we're on mobile (navbar is collapsed)
@@ -3181,19 +3206,24 @@
             });
         });
 
-        // Close dropdowns when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            const isClickInsideNav = event.target.closest('.navbar');
-            if (!isClickInsideNav && window.innerWidth < 992) {
-                const openDropdowns = document.querySelectorAll('.dropdown-menu.show');
-                openDropdowns.forEach(dropdown => {
-                    const bsDropdown = bootstrap.Dropdown.getInstance(dropdown.previousElementSibling);
-                    if (bsDropdown) {
-                        bsDropdown.hide();
-                    }
-                });
-            }
+        // Close navbar when clicking dropdown items
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Check if we're on mobile (navbar is collapsed)
+                if (window.getComputedStyle(navbarToggler).display !== 'none') {
+                    // Close the mobile menu after a short delay to allow navigation
+                    setTimeout(() => {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                            toggle: true
+                        });
+                        setTimeout(() => {
+                            navbarCollapse.classList.remove('show');
+                        }, 350);
+                    }, 100);
+                }
+            });
         });
+
     </script>
 </body>
 </html>
