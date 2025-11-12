@@ -75,6 +75,55 @@
             color: #ffffff !important;
         }
 
+        /* Dropdown Menu Styles */
+        .navbar .dropdown-menu {
+            background: rgba(44, 90, 160, 0.95);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-top: 0.5rem;
+        }
+
+        .navbar .dropdown-item {
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding-left: 1.25rem;
+        }
+
+        .navbar .dropdown-toggle::after {
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 991px) {
+            .navbar .dropdown-menu {
+                background: rgba(44, 90, 160, 0.98);
+                margin-left: 1rem;
+                margin-top: 0.25rem;
+                border-radius: 8px;
+            }
+
+            .navbar .dropdown-item {
+                padding-left: 1.5rem;
+                color: #ffffff;
+            }
+
+            .navbar .dropdown-item:hover {
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            /* Ensure dropdowns don't overflow on mobile */
+            .navbar-collapse {
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+        }
+
         /* Search Bar Styles */
         .search-container {
             background: white;
@@ -711,46 +760,49 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#overview">Project Overview</a>
+                        <a class="nav-link" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="researchDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Research
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="researchDropdown">
+                            <li><a class="dropdown-item" href="#purpose">Purpose & Objectives</a></li>
+                            <li><a class="dropdown-item" href="#research-gaps">Research Gaps</a></li>
+                            <li><a class="dropdown-item" href="#problem-solved">Problem Solved</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="systemDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            System
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="systemDropdown">
+                            <li><a class="dropdown-item" href="#methodology">Methodology</a></li>
+                            <li><a class="dropdown-item" href="#database">Database</a></li>
+                            <li><a class="dropdown-item" href="#diagrams">Diagrams</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="mlDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            ML & Analytics
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="mlDropdown">
+                            <li><a class="dropdown-item" href="#prediction-explanation">How Prediction Works</a></li>
+                            <li><a class="dropdown-item" href="#ckd-process">CKD Process</a></li>
+                            <li><a class="dropdown-item" href="#ml-analytics">ML Analytics</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#purpose">Purpose & Objectives</a>
+                        <a class="nav-link" href="#demonstration">Demo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#research-gaps">Research Gaps</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#problem-solved">Problem Solved</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#methodology">Methodology</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#ckd-process">CKD Prediction Process</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#ml-analytics">ML Analytics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#database">Database Structure</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#diagrams">System Diagrams</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#challenges">Challenges</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#demonstration">Demonstration</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#impact">Impact & Results</a>
+                        <a class="nav-link" href="#impact">Results</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#faq">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#defense-script">Defense Script</a>
+                        <a class="nav-link" href="#defense-script">Defense</a>
                     </li>
                 </ul>
             </div>
@@ -1243,8 +1295,372 @@
         </div>
     </section>
 
+    <!-- How Prediction Works - Panel Explanation -->
+    <section id="prediction-explanation" class="py-5 section-bg-blue">
+        <div class="container">
+            <h2 class="section-title">How Prediction Works - Panel Explanation</h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-question-circle me-2"></i>Understanding the Prediction Process for Capstone Defense
+                        </div>
+                        <div class="card-body">
+                            <!-- How Prediction Process Works -->
+                            <div class="mb-5">
+                                <h4 class="text-primary mb-3"><i class="fas fa-cogs me-2"></i>1. How the Prediction Process Works (Simple Explanation)</h4>
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h6>Data Input</h6>
+                                        <p>The healthcare provider enters patient information through the web interface:</p>
+                                        <ul>
+                                            <li><strong>Clinical lab values:</strong> Creatinine, BUN, Hemoglobin, Albumin, Phosphorus, Calcium</li>
+                                            <li><strong>Demographics:</strong> Age, Gender</li>
+                                            <li><strong>Medical history:</strong> Diabetes, Hypertension, Cardiovascular Disease</li>
+                                            <li><strong>Dialysis information:</strong> Years on dialysis</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h6>eGFR Calculation</h6>
+                                        <p>The system automatically calculates the estimated Glomerular Filtration Rate (eGFR) using the CKD-EPI formula. This estimates how well the kidneys are filtering blood.</p>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h6>CKD Staging</h6>
+                                        <p>Based on the eGFR value, the system automatically determines the CKD stage (Stage 1 to Stage 5).</p>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h6>Machine Learning Prediction</h6>
+                                        <p>The patient data is sent to a Python FastAPI service that runs two ML models:</p>
+                                        <ul>
+                                            <li><strong>Risk Assessment Model (Random Forest):</strong> Predicts the patient's risk level (Low, Moderate, High, Critical) for complications</li>
+                                            <li><strong>Survival Analysis Model (Cox Regression):</strong> Predicts survival probabilities at 6 months, 12 months, and 24 months</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <h6>Results Display</h6>
+                                        <p>The system displays:</p>
+                                        <ul>
+                                            <li>CKD stage and description</li>
+                                            <li>Risk category with probability</li>
+                                            <li>Survival probabilities</li>
+                                            <li>Top contributing factors</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Traditional vs Digital -->
+                            <div class="mb-5">
+                                <h4 class="text-primary mb-3"><i class="fas fa-exchange-alt me-2"></i>2. How We Converted Traditional Method to Website</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card bg-danger text-white mb-3">
+                                            <div class="card-header">
+                                                <h5><i class="fas fa-file-alt me-2"></i>Traditional Method (Before)</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li>Manual calculation of eGFR using calculator or paper formulas</li>
+                                                    <li>Manual CKD staging by looking up GFR ranges in reference tables</li>
+                                                    <li>Risk assessment based on healthcare provider's experience and intuition</li>
+                                                    <li>Paper-based patient records stored in folders</li>
+                                                    <li>No automated predictions or data visualization</li>
+                                                    <li><strong>Time-consuming:</strong> Each patient assessment took 15-30 minutes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-success text-white mb-3">
+                                            <div class="card-header">
+                                                <h5><i class="fas fa-laptop-code me-2"></i>Our Digital System (After)</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><strong>Automated eGFR Calculation:</strong> System automatically calculates eGFR using CKD-EPI formula</li>
+                                                    <li><strong>Instant CKD Staging:</strong> System immediately determines CKD stage</li>
+                                                    <li><strong>Machine Learning Predictions:</strong> Uses trained ML models from historical data</li>
+                                                    <li><strong>Digital Database:</strong> All records stored in MySQL database</li>
+                                                    <li><strong>Data Visualization:</strong> Charts and graphs automatically generated</li>
+                                                    <li><strong>Time-Saving:</strong> Complete assessment in 2-3 minutes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-lightbulb me-2"></i>Key Improvements:</h6>
+                                    <ul class="mb-0">
+                                        <li><strong>Accuracy:</strong> ML models consider multiple factors simultaneously, reducing human error</li>
+                                        <li><strong>Consistency:</strong> Same input always produces the same output</li>
+                                        <li><strong>Speed:</strong> Instant calculations vs. manual computation</li>
+                                        <li><strong>Data Management:</strong> Easy to search, filter, and export patient records</li>
+                                        <li><strong>Visualization:</strong> Charts help identify patterns missed in paper records</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Comparison Table -->
+                            <div class="mb-5">
+                                <h4 class="text-primary mb-3"><i class="fas fa-balance-scale me-2"></i>3. Comparison with Traditional Method</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="table-primary">
+                                            <tr>
+                                                <th>Aspect</th>
+                                                <th>Traditional Method</th>
+                                                <th>Our System</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>eGFR Calculation</strong></td>
+                                                <td>Manual calculation using calculator</td>
+                                                <td>Automatic calculation using CKD-EPI formula</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>CKD Staging</strong></td>
+                                                <td>Manual lookup in reference table</td>
+                                                <td>Automatic staging based on eGFR</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Risk Assessment</strong></td>
+                                                <td>Based on healthcare provider's experience</td>
+                                                <td>ML model analyzes 12 factors simultaneously</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Survival Prediction</strong></td>
+                                                <td>Not available or rough estimate</td>
+                                                <td>ML model provides probabilities at 6, 12, 24 months</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Data Storage</strong></td>
+                                                <td>Paper files in folders</td>
+                                                <td>Digital database (MySQL)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Data Retrieval</strong></td>
+                                                <td>Manual searching through files</td>
+                                                <td>Instant search and filter</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Data Visualization</strong></td>
+                                                <td>None</td>
+                                                <td>Charts, graphs, trends</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Time per Patient</strong></td>
+                                                <td>15-30 minutes</td>
+                                                <td>2-3 minutes</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Consistency</strong></td>
+                                                <td>Varies between providers</td>
+                                                <td>Consistent for all users</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Historical Analysis</strong></td>
+                                                <td>Difficult to analyze trends</td>
+                                                <td>Easy to see patterns over time</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Formulas Explanation -->
+                            <div class="mb-5">
+                                <h4 class="text-primary mb-3"><i class="fas fa-calculator me-2"></i>4. Simple Explanation of Formulas, GFR, and eGFR</h4>
+                                
+                                <div class="card mb-3">
+                                    <div class="card-header bg-info text-white">
+                                        <h5><i class="fas fa-info-circle me-2"></i>What is GFR?</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>GFR (Glomerular Filtration Rate)</strong> measures how well your kidneys filter waste from blood. It's measured in milliliters per minute per 1.73 square meters (mL/min/1.73m²).</p>
+                                        <p><strong>Simple Analogy:</strong> Think of your kidneys as a coffee filter. GFR measures how fast the filter can clean the coffee (blood). A healthy filter works fast (high GFR), while a damaged filter works slowly (low GFR).</p>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header bg-info text-white">
+                                        <h5><i class="fas fa-info-circle me-2"></i>What is eGFR?</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>eGFR (Estimated Glomerular Filtration Rate)</strong> is a calculated estimate of GFR. Direct GFR measurement requires injecting substances and collecting urine, which is complex. eGFR uses a formula based on blood test results.</p>
+                                        <p><strong>Why we use eGFR:</strong> It's quick, non-invasive, and accurate enough for clinical use.</p>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header bg-warning text-dark">
+                                        <h5><i class="fas fa-code me-2"></i>The CKD-EPI Formula (How We Calculate eGFR)</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>The system uses the <strong>CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration) equation</strong>, which is the current standard.</p>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6 class="text-primary">For Males:</h6>
+                                                <ul>
+                                                    <li>If Creatinine ≤ 0.9: eGFR = 141 × (Creatinine/0.9)^(-0.411) × 0.993^Age</li>
+                                                    <li>If Creatinine > 0.9: eGFR = 141 × (Creatinine/0.9)^(-1.209) × 0.993^Age</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6 class="text-primary">For Females:</h6>
+                                                <ul>
+                                                    <li>If Creatinine ≤ 0.7: eGFR = 144 × (Creatinine/0.7)^(-0.329) × 0.993^Age</li>
+                                                    <li>If Creatinine > 0.7: eGFR = 144 × (Creatinine/0.7)^(-1.209) × 0.993^Age</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="alert alert-light mt-3">
+                                            <h6><i class="fas fa-lightbulb me-2"></i>What this means in simple terms:</h6>
+                                            <ul class="mb-0">
+                                                <li>The formula uses <strong>Creatinine</strong> (a waste product; high levels suggest poor kidney function)</li>
+                                                <li>Adjusts for <strong>Age</strong> (kidney function naturally decreases with age)</li>
+                                                <li>Adjusts for <strong>Gender</strong> (males and females have different normal creatinine levels)</li>
+                                                <li>The result is an estimate of how many milliliters of blood the kidneys filter per minute</li>
+                                            </ul>
+                                            <p class="mt-2 mb-0"><strong>Example:</strong> A 50-year-old male with creatinine of 1.5 mg/dL would have an eGFR of approximately 50 mL/min/1.73m², indicating Stage 3a CKD.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header bg-success text-white">
+                                        <h5><i class="fas fa-list-ol me-2"></i>CKD Stages Based on eGFR:</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Stage</th>
+                                                        <th>eGFR Range</th>
+                                                        <th>Meaning</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>Stage 1</strong></td>
+                                                        <td>≥90</td>
+                                                        <td>Normal kidney function</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Stage 2</strong></td>
+                                                        <td>60-89</td>
+                                                        <td>Mild decrease</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Stage 3a</strong></td>
+                                                        <td>45-59</td>
+                                                        <td>Mild to moderate decrease</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Stage 3b</strong></td>
+                                                        <td>30-44</td>
+                                                        <td>Moderate to severe decrease</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Stage 4</strong></td>
+                                                        <td>15-29</td>
+                                                        <td>Severe decrease</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Stage 5</strong></td>
+                                                        <td>&lt;15</td>
+                                                        <td>Kidney failure (needs dialysis)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ML Models Explanation -->
+                            <div class="mb-5">
+                                <h4 class="text-primary mb-3"><i class="fas fa-brain me-2"></i>5. Machine Learning Models Explained Simply</h4>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5><i class="fas fa-tree me-2"></i>Risk Assessment Model (Random Forest)</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p><strong>What it does:</strong> Predicts the patient's risk level for complications.</p>
+                                                <p><strong>How it works:</strong></p>
+                                                <ul>
+                                                    <li>Trained on historical patient data</li>
+                                                    <li>Analyzes 12 factors simultaneously (age, creatinine, BUN, hemoglobin, etc.)</li>
+                                                    <li>Creates a "forest" of decision trees that vote on the risk level</li>
+                                                    <li>Outputs: Low, Moderate, High, or Critical risk</li>
+                                                </ul>
+                                                <div class="alert alert-light mt-3">
+                                                    <strong>Simple analogy:</strong> Like asking 100 doctors to review the same patient data and vote on the risk level. The majority vote becomes the prediction.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-success text-white">
+                                                <h5><i class="fas fa-chart-line me-2"></i>Survival Analysis Model (Cox Regression)</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p><strong>What it does:</strong> Predicts survival probabilities at different time points (6, 12, 24 months).</p>
+                                                <p><strong>How it works:</strong></p>
+                                                <ul>
+                                                    <li>Analyzes how long patients with similar characteristics survived</li>
+                                                    <li>Considers factors that affect survival (age, comorbidities, lab values)</li>
+                                                    <li>Calculates the probability of survival at specific time points</li>
+                                                    <li>Outputs: Survival probabilities (e.g., 85% chance of surviving 12 months)</li>
+                                                </ul>
+                                                <div class="alert alert-light mt-3">
+                                                    <strong>Simple analogy:</strong> Like looking at 100 similar patients and seeing how many survived after 12 months. If 85 out of 100 survived, the probability is 85%.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Summary for Panelists -->
+                            <div class="card bg-gradient" style="background: linear-gradient(135deg, #e0f2fe, #bae6fd);">
+                                <div class="card-body">
+                                    <h4 class="text-primary mb-3"><i class="fas fa-microphone me-2"></i>Summary for Panelists</h4>
+                                    <div class="alert alert-primary">
+                                        <p class="lead mb-0"><strong>"Our system takes the traditional manual process of calculating eGFR, determining CKD stages, and assessing patient risk, and automates it using proven medical formulas and machine learning. Instead of healthcare providers spending 15-30 minutes per patient doing manual calculations and assessments, our system provides instant, accurate predictions in 2-3 minutes. The machine learning models learn from historical patient data to identify patterns that might be missed in manual assessment, providing more consistent and accurate risk predictions and survival estimates that weren't possible with traditional paper-based methods."</strong></p>
+                                    </div>
+                                    <p class="text-muted"><em>Use these explanations during your defense. Adjust the technical detail based on your panel's background.</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- How CKD Prediction Works -->
-    <section id="ckd-process" class="py-5 section-bg-blue">
+    <section id="ckd-process" class="py-5 section-bg-orange">
         <div class="container">
             <h2 class="section-title">How CKD Prediction Works</h2>
             <div class="row">
@@ -2702,10 +3118,14 @@
 
             // Define searchable content
             const searchableContent = [
-                { title: 'Machine Learning Models', content: 'Random Forest Classifier, Cox Regression, Gradient Boosting', link: '#ckd-process' },
+                { title: 'How Prediction Works', content: 'Step-by-step explanation of the prediction process, eGFR calculation, and ML models', link: '#prediction-explanation' },
+                { title: 'Traditional vs Digital', content: 'Comparison between manual methods and automated system', link: '#prediction-explanation' },
+                { title: 'eGFR Formula', content: 'CKD-EPI equation explanation for calculating estimated Glomerular Filtration Rate', link: '#prediction-explanation' },
+                { title: 'GFR Explanation', content: 'What is GFR and how it measures kidney function', link: '#prediction-explanation' },
+                { title: 'Machine Learning Models', content: 'Random Forest Classifier, Cox Regression, Gradient Boosting', link: '#prediction-explanation' },
                 { title: '97% Accuracy', content: 'Achieved through Random Forest Classifier with 112 patient records', link: '#overview' },
-                { title: 'Random Forest Classifier', content: 'Used for risk assessment and CKD prediction with high accuracy', link: '#ckd-process' },
-                { title: 'Cox Regression Model', content: 'Used for survival analysis predicting 6-month, 12-month, and 24-month survival', link: '#ckd-process' },
+                { title: 'Random Forest Classifier', content: 'Used for risk assessment and CKD prediction with high accuracy', link: '#prediction-explanation' },
+                { title: 'Cox Regression Model', content: 'Used for survival analysis predicting 6-month, 12-month, and 24-month survival', link: '#prediction-explanation' },
                 { title: 'Kaplan-Meier Analysis', content: 'Statistical method used for survival curve visualization and time-to-event analysis', link: '#ml-analytics' },
                 { title: 'System Usability Scale', content: 'SUS score of 73.33 (Grade B - Good) evaluated by 6 healthcare professionals', link: '#impact' },
                 { title: 'Patient Management', content: 'CRUD operations for patient records with demographics and clinical data', link: '#database' },
@@ -2741,7 +3161,7 @@
         }
 
         // Mobile menu auto-close on navigation click
-        const navLinks = document.querySelectorAll('.nav-link');
+        const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
         const navbarToggler = document.querySelector('.navbar-toggler');
         const navbarCollapse = document.querySelector('.navbar-collapse');
 
@@ -2759,6 +3179,20 @@
                     }, 350);
                 }
             });
+        });
+
+        // Close dropdowns when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = event.target.closest('.navbar');
+            if (!isClickInsideNav && window.innerWidth < 992) {
+                const openDropdowns = document.querySelectorAll('.dropdown-menu.show');
+                openDropdowns.forEach(dropdown => {
+                    const bsDropdown = bootstrap.Dropdown.getInstance(dropdown.previousElementSibling);
+                    if (bsDropdown) {
+                        bsDropdown.hide();
+                    }
+                });
+            }
         });
     </script>
 </body>
