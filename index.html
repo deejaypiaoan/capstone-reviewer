@@ -40,6 +40,18 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s ease-in-out;
+            margin-bottom: 0 !important;
+        }
+
+        /* Fix white space below navbar when scrolled */
+        .navbar.scrolled-down {
+            transform: translateY(-100%);
+            margin-bottom: 0 !important;
+        }
+
+        .navbar.scrolled-up {
+            transform: translateY(0);
+            margin-bottom: 0 !important;
         }
 
         /* Navbar buttons as clean icons on mobile */
@@ -52,13 +64,6 @@
             box-shadow: none !important;
         }
 
-        .navbar.scrolled-down {
-            transform: translateY(-100%);
-        }
-
-        .navbar.scrolled-up {
-            transform: translateY(0);
-        }
 
         .navbar-brand {
             font-weight: 700;
@@ -450,14 +455,97 @@
         @media (max-width: 768px) {
             body {
                 padding-top: 70px; /* Smaller padding for mobile */
+                font-size: 0.9rem; /* Smaller base font size */
+                line-height: 1.5;
             }
 
-            .hero-title {
-                font-size: 2rem;
+            /* Reduce text sizes for mobile to minimize scrolling */
+            h1, .hero-title {
+                font-size: 1.75rem !important;
+            }
+            
+            h2, .section-title {
+                font-size: 1.5rem !important;
+            }
+
+            h3 {
+                font-size: 1.25rem !important;
+            }
+
+            h4 {
+                font-size: 1.1rem !important;
+            }
+
+            h5 {
+                font-size: 1rem !important;
+            }
+
+            h6 {
+                font-size: 0.95rem !important;
             }
             
             .hero-subtitle {
-                font-size: 1rem;
+                font-size: 0.9rem;
+            }
+
+            p, .card-text, li {
+                font-size: 0.85rem !important;
+            }
+
+            .lead {
+                font-size: 0.95rem !important;
+            }
+
+            .card-body {
+                padding: 1rem !important;
+            }
+
+            .section-title {
+                margin-bottom: 1rem !important;
+            }
+
+            .py-5 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+
+            /* Reduce spacing in cards and sections */
+            .card {
+                margin-bottom: 1rem !important;
+            }
+
+            .card-header {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.95rem !important;
+            }
+
+            .process-step, .analytics-step {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .step-number, .step-icon {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 1rem !important;
+                margin-right: 1rem !important;
+            }
+
+            .stats-card {
+                padding: 1.5rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .stats-number {
+                font-size: 2rem !important;
+            }
+
+            ul, ol {
+                padding-left: 1.25rem !important;
+            }
+
+            li {
+                margin-bottom: 0.25rem !important;
             }
 
             /* Mobile Navigation Fixes */
@@ -541,6 +629,10 @@
         }
 
         @media (max-width: 576px) {
+            body {
+                font-size: 0.85rem;
+            }
+
             .navbar-brand {
                 font-size: 0.85rem !important;
                 max-width: 55%;
@@ -569,10 +661,99 @@
             /* Smaller gap between buttons */
             .navbar .d-flex { gap: 0.2rem; }
 
+            /* Even smaller text for extra small screens */
+            h1, .hero-title {
+                font-size: 1.5rem !important;
+            }
+            
+            h2, .section-title {
+                font-size: 1.3rem !important;
+            }
+
+            h3 {
+                font-size: 1.15rem !important;
+            }
+
+            h4 {
+                font-size: 1rem !important;
+            }
+
+            h5 {
+                font-size: 0.95rem !important;
+            }
+
+            h6 {
+                font-size: 0.9rem !important;
+            }
+
+            p, .card-text, li {
+                font-size: 0.8rem !important;
+            }
+
+            .lead {
+                font-size: 0.9rem !important;
+            }
+
             /* Defense Script extra small sizing */
-            .slide-title { font-size: 1.3rem; }
-            .script-box .script-text { font-size: 0.9rem; }
-            .slide-content .lead, .slide-content li, .slide-content p { font-size: 0.9rem; }
+            .slide-title { font-size: 1.2rem; }
+            .script-box .script-text { font-size: 0.85rem; }
+            .slide-content .lead, .slide-content li, .slide-content p { font-size: 0.85rem; }
+
+            .py-5 {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+            }
+
+            /* Even more compact spacing for extra small screens */
+            .card {
+                margin-bottom: 0.75rem !important;
+            }
+
+            .card-header {
+                padding: 0.5rem 0.75rem !important;
+                font-size: 0.9rem !important;
+            }
+
+            .process-step, .analytics-step {
+                padding: 0.75rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+
+            .step-number, .step-icon {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 0.9rem !important;
+                margin-right: 0.75rem !important;
+            }
+
+            .stats-card {
+                padding: 1rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+
+            .stats-number {
+                font-size: 1.75rem !important;
+            }
+
+            ul, ol {
+                padding-left: 1rem !important;
+            }
+
+            li {
+                margin-bottom: 0.2rem !important;
+            }
+
+            .mb-5 {
+                margin-bottom: 2rem !important;
+            }
+
+            .mb-4 {
+                margin-bottom: 1.5rem !important;
+            }
+
+            .mb-3 {
+                margin-bottom: 1rem !important;
+            }
         }
 
         .slide-container {
@@ -792,8 +973,14 @@
                             <li><a class="dropdown-item" href="#ml-analytics">ML Analytics</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#challenges">Challenges</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="challengesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Challenges
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="challengesDropdown">
+                            <li><a class="dropdown-item" href="#challenges">Development Challenges</a></li>
+                            <li><a class="dropdown-item" href="#ml-terms">Understand ML Terms</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#demonstration">Demo</a>
@@ -1274,7 +1461,7 @@
     </section>
 
     <!-- Technical Terms Explanation Section -->
-    <section class="py-3 bg-white">
+    <section id="ml-terms" class="py-3 bg-white">
         <div class="container">
             <div class="tech-explanation">
                 <h6><i class="fas fa-brain me-2"></i>Understanding the Machine Learning Terms Used in This System:</h6>
@@ -3126,6 +3313,8 @@
                 { title: 'eGFR Formula', content: 'CKD-EPI equation explanation for calculating estimated Glomerular Filtration Rate', link: '#prediction-explanation' },
                 { title: 'GFR Explanation', content: 'What is GFR and how it measures kidney function', link: '#prediction-explanation' },
                 { title: 'Machine Learning Models', content: 'Random Forest Classifier, Cox Regression, Gradient Boosting', link: '#prediction-explanation' },
+                { title: 'Understand ML Terms', content: 'Understanding the Machine Learning Terms Used in This System', link: '#ml-terms' },
+                { title: 'ML Terms', content: 'Random Forest, Cox Regression, Kaplan-Meier, Gradient Boosting explanations', link: '#ml-terms' },
                 { title: '97% Accuracy', content: 'Achieved through Random Forest Classifier with 112 patient records', link: '#overview' },
                 { title: 'Random Forest Classifier', content: 'Used for risk assessment and CKD prediction with high accuracy', link: '#prediction-explanation' },
                 { title: 'Cox Regression Model', content: 'Used for survival analysis predicting 6-month, 12-month, and 24-month survival', link: '#prediction-explanation' },
