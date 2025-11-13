@@ -203,6 +203,46 @@
             margin-bottom: 0.5rem;
         }
 
+        .doc-section h6 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-content ul {
+            margin-bottom: 1rem;
+        }
+
+        .doc-code {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-table th,
+        .doc-table td {
+            border: 1px solid #e2e8f0;
+            padding: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .doc-table th {
+            background: #f1f5f9;
+            font-weight: 600;
+        }
+
         .hero-section {
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
@@ -2322,6 +2362,395 @@
                                         <li>Pandas Data Processing</li>
                                         <li>NumPy Calculations</li>
                                     </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Machine Learning Documentation -->
+    <section id="ml-documentation" class="py-5 section-bg-blue">
+        <div class="container">
+            <h2 class="section-title">Machine Learning Documentation</h2>
+            <p class="lead text-center mb-4">Reference copies of the machine learning documentation are embedded below for quick review during the panel defense.</p>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-book me-2"></i>Documentation Library (mirrors files in <code>ml_service/</code>)
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="documentationAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingRF">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#docRandomForest" aria-expanded="true" aria-controls="docRandomForest">
+                                    Random Forest Classifier with Binary Decision Trees
+                                </button>
+                            </h2>
+                            <div id="docRandomForest" class="accordion-collapse collapse show" data-bs-parent="#documentationAccordion">
+                                <div class="accordion-body doc-content">
+                                    <p class="mb-3"><strong>Source:</strong> <code>ml_service/RANDOM_FOREST_EXPLANATION.md</code></p>
+                                    <div class="doc-section">
+                                        <h6>Overview</h6>
+                                        <p>The Random Forest risk classifier consumes the binary clinical matrix produced by <code>BinaryConverter</code>. It constructs 100 decision trees that each split on yes/no questions such as “Is creatinine abnormal?” and combines their votes to produce <em>Low</em>, <em>Moderate</em>, <em>High</em>, or <em>Critical</em> risk categories.</p>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Binary Data Conversion</h6>
+                                        <p>All clinical parameters are converted into binary indicators (0 = normal/no, 1 = abnormal/yes) before training or prediction.</p>
+                                        <table class="doc-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter</th>
+                                                    <th>Normal Range / Rule</th>
+                                                    <th>Binary Definition</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Creatinine</td>
+                                                    <td>0.7–1.3 mg/dL</td>
+                                                    <td>0 = Normal, 1 = Outside range</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>BUN</td>
+                                                    <td>7–20 mg/dL</td>
+                                                    <td>0 = Normal, 1 = Outside range</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Hemoglobin</td>
+                                                    <td>13.5–17.5 g/dL</td>
+                                                    <td>0 = Normal, 1 = Outside range</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Albumin</td>
+                                                    <td>3.4–5.4 g/dL</td>
+                                                    <td>0 = Normal, 1 = Outside range</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Phosphorus</td>
+                                                    <td>2.5–4.5 mg/dL</td>
+                                                    <td>0 = Normal, 1 = Outside range</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Calcium</td>
+                                                    <td>8.5–10.5 mg/dL</td>
+                                                    <td>0 = Normal, 1 = Outside range</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Diabetes / Hypertension / CVD</td>
+                                                    <td>Clinical diagnosis</td>
+                                                    <td>0 = No, 1 = Yes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Gender</td>
+                                                    <td>Male vs Female</td>
+                                                    <td>0 = Female, 1 = Male</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dialysis Years</td>
+                                                    <td>&le;5 vs &gt;5 years</td>
+                                                    <td>0 = &le;5 years, 1 = &gt;5 years</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p><strong>Example conversion:</strong></p>
+                                        <pre class="doc-code">creatinine_binary = 1  (2.5 &gt; 1.3)
+bun_binary        = 0  (15 within range)
+hemoglobin_binary = 1  (10 &lt; 13.5)
+albumin_binary    = 1  (3.0 &lt; 3.4)
+diabetes          = 1
+hypertension      = 0</pre>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Model Architecture</h6>
+                                        <ul>
+                                            <li>100 bootstrap decision trees (max depth 10, min samples split 5, min samples leaf 2).</li>
+                                            <li>Random feature subsets at each split to reduce correlation across trees.</li>
+                                            <li>Class weighting set to <code>'balanced'</code> for the imbalanced risk labels.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Training Workflow</h6>
+                                        <ol>
+                                            <li>Prepare 112 patient records &rarr; convert to binary features.</li>
+                                            <li>Bootstrap sampling to create one dataset per tree.</li>
+                                            <li>Grow each tree on binary splits and stop when constraints are met.</li>
+                                            <li>Persist the model at <code>models/artifacts/risk_model.pkl</code> and metrics to <code>risk_training_summary.json</code>.</li>
+                                        </ol>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Prediction &amp; Interpretation</h6>
+                                        <ul>
+                                            <li>Binary vector sent through all trees; majority vote defines the final risk category.</li>
+                                            <li>Confidence score = fraction of trees that selected the winning label.</li>
+                                            <li><strong>Feature importance</strong> comes from tree split frequencies and is surfaced to the dashboard.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Key Files</h6>
+                                        <ul>
+                                            <li><code>ml_service/utils/binary_converter.py</code></li>
+                                            <li><code>ml_service/models/risk_model.py</code></li>
+                                            <li><code>ml_service/scripts/train_model.py</code></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSurvival">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#docSurvival" aria-expanded="false" aria-controls="docSurvival">
+                                    Survival Analysis (Kaplan–Meier &amp; Cox Regression)
+                                </button>
+                            </h2>
+                            <div id="docSurvival" class="accordion-collapse collapse" data-bs-parent="#documentationAccordion">
+                                <div class="accordion-body doc-content">
+                                    <p class="mb-3"><strong>Source:</strong> <code>ml_service/SURVIVAL_ANALYSIS_EXPLANATION.md</code></p>
+                                    <div class="doc-section">
+                                        <h6>Training Data</h6>
+                                        <ul>
+                                            <li>Binary feature matrix identical to the Random Forest inputs.</li>
+                                            <li>Additional survival labels: <code>followup_months</code>, <code>followup_years</code>, <code>event_observed</code>.</li>
+                                            <li>NKF-aligned <code>egfr_estimate</code> and CKD stage labels (Stages 1–5) embedded per patient.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>CKD Stage Mapping (National Kidney Foundation)</h6>
+                                        <table class="doc-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Stage</th>
+                                                    <th>eGFR (mL/min/1.73m²)</th>
+                                                    <th>Kidney Function</th>
+                                                    <th>Dashboard Usage</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>&ge;90</td>
+                                                    <td>90–100%</td>
+                                                    <td>Represents very low-risk cohort</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>60–89</td>
+                                                    <td>60–89%</td>
+                                                    <td>Early-stage kidney damage indicators</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3a</td>
+                                                    <td>45–59</td>
+                                                    <td>45–59%</td>
+                                                    <td>Mapped to “Moderate” risk curves</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3b</td>
+                                                    <td>30–44</td>
+                                                    <td>30–44%</td>
+                                                    <td>Signals progression toward severe loss</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>15–29</td>
+                                                    <td>15–29%</td>
+                                                    <td>Feeds “High” risk survival outputs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>&lt;15</td>
+                                                    <td>&lt;15%</td>
+                                                    <td>Drives “Critical” risk survival projections</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p>The dataset enforces representation of Stages 1 and 2 so these appear in the Survival Prediction and CKD Heat Map visualizations.</p>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Training Pipeline</h6>
+                                        <ol>
+                                            <li><strong>Data extraction</strong> (<code>scripts/extract_patient_data.py</code>) creates the binary features, survival labels, and stage assignments.</li>
+                                            <li><strong>Risk model training</strong> (<code>scripts/train_model.py</code>) refreshes risk metrics and distributions.</li>
+                                            <li><strong>Survival modeling</strong> (<code>scripts/train_survival_model.py</code>) fits the Cox proportional hazards model, computes the concordance index, and generates Kaplan–Meier curves.</li>
+                                        </ol>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>API Endpoints</h6>
+                                        <ul>
+                                            <li><code>/predict/survival</code> &mdash; patient-level Cox predictions (6, 12, 24 months).</li>
+                                            <li><code>/survival/curves</code> &mdash; cohort survival curves per stage.</li>
+                                            <li><code>/metrics</code> &mdash; combined risk &amp; survival summaries for the dashboard.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Panel Talking Points</h6>
+                                        <ul>
+                                            <li>Survival outputs align with NKF staging and the binary feature set.</li>
+                                            <li>Reported metrics (C-index and stage coverage) come from the persisted training artifacts.</li>
+                                            <li>The Kaplan–Meier and Cox components are refreshed whenever <code>training_data.csv</code> is rebuilt.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingRoc">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#docRoc" aria-expanded="false" aria-controls="docRoc">
+                                    Prediction Accuracy (ROC) Visualization
+                                </button>
+                            </h2>
+                            <div id="docRoc" class="accordion-collapse collapse" data-bs-parent="#documentationAccordion">
+                                <div class="accordion-body doc-content">
+                                    <p class="mb-3"><strong>Source:</strong> <code>ml_service/PREDICTION_ACCURACY_EXPLANATION.md</code></p>
+                                    <div class="doc-section">
+                                        <h6>Model &amp; Metrics</h6>
+                                        <ul>
+                                            <li>Random Forest with 100 binary trees trained via <code>scripts/train_model.py</code>.</li>
+                                            <li>Artifacts stored at <code>models/artifacts/risk_training_summary.json</code> supply ROC arrays and reported metrics.</li>
+                                            <li>Reported dashboard figures: accuracy 0.9739 and AUC 0.97 (full dataset), hold-out accuracy 91.30%, hold-out AUC 0.913.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Visualization Flow</h6>
+                                        <ol>
+                                            <li>Laravel route <code>/analytics/ml/roc-curve</code> calls FastAPI <code>/analytics/roc</code>.</li>
+                                            <li>Returned arrays (<code>fpr</code>, <code>tpr</code>, thresholds, sample counts) feed the Chart.js ROC plot.</li>
+                                            <li>The 97% figure displayed in the dashboard references the full-dataset accuracy stored in the artifact.</li>
+                                        </ol>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Defense Talking Points</h6>
+                                        <ul>
+                                            <li>Binary features ensure interpretability of threshold movement across the ROC curve.</li>
+                                            <li>AUC is computed with <code>sklearn.metrics.roc_curve</code> and logged for future audits.</li>
+                                            <li>Retraining (extract &rarr; train risk) refreshes the ROC curves so the visualization always matches the current classifier.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFeatureImportance">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#docFeatureImportance" aria-expanded="false" aria-controls="docFeatureImportance">
+                                    Clinical Parameters (Feature Importance)
+                                </button>
+                            </h2>
+                            <div id="docFeatureImportance" class="accordion-collapse collapse" data-bs-parent="#documentationAccordion">
+                                <div class="accordion-body doc-content">
+                                    <p class="mb-3"><strong>Source:</strong> <code>ml_service/CLINICAL_PARAMETERS_EXPLANATION.md</code></p>
+                                    <div class="doc-section">
+                                        <h6>Data Source</h6>
+                                        <p>Feature importance scores are captured from the Random Forest’s <code>feature_importances_</code> vector and written to <code>risk_training_summary.json</code>, which powers the Clinical Parameters chart.</p>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Visualization Workflow</h6>
+                                        <ol>
+                                            <li>Laravel controller <code>MLAnalyticsController::featureImportance()</code> calls FastAPI <code>/analytics/feature-importance</code>.</li>
+                                            <li>The endpoint responds with ordered binary feature names, normalized importance values, and palette data.</li>
+                                            <li>Chart.js renders a horizontal bar chart; patient overlays display raw lab values for context.</li>
+                                        </ol>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Interpretation Notes</h6>
+                                        <ul>
+                                            <li>Albumin and phosphorus commonly rank highest, reflecting dialysis risk factors.</li>
+                                            <li>Gender and calcium appear due to demographic/metabolic patterns in the dataset.</li>
+                                            <li>The chart directly corresponds to the 97% reported performance of the same Random Forest.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Panel Talking Points</h6>
+                                        <ul>
+                                            <li>Explain that the bars are generated algorithmically, not manually.</li>
+                                            <li>Highlight the binary threshold alignment with NKF clinical ranges.</li>
+                                            <li>Emphasize the refresh procedure (rerun extraction + training) to keep the visualization synchronized.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingHeatMap">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#docHeatMap" aria-expanded="false" aria-controls="docHeatMap">
+                                    CKD Heat Map (Risk Distribution)
+                                </button>
+                            </h2>
+                            <div id="docHeatMap" class="accordion-collapse collapse" data-bs-parent="#documentationAccordion">
+                                <div class="accordion-body doc-content">
+                                    <p class="mb-3"><strong>Source:</strong> <code>ml_service/CKD_HEAT_MAP_EXPLANATION.md</code></p>
+                                    <div class="doc-section">
+                                        <h6>Counts &amp; Percentages</h6>
+                                        <ul>
+                                            <li>Risk distribution (Critical, High, Moderate, Low) is pulled from <code>risk_training_summary.json</code>.</li>
+                                            <li>Example dataset counts (115 patients): Critical 93, High 20, Moderate 1, Low 1.</li>
+                                            <li>FastAPI normalizes counts to percentages for the dashboard heat map.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Visualization Pipeline</h6>
+                                        <ol>
+                                            <li>Laravel endpoint <code>/analytics/ml/risk-distribution</code> forwards to FastAPI <code>/analytics/risk-distribution</code>.</li>
+                                            <li>API response includes color palette (<code>#2ecc71</code>, <code>#f39c12</code>, <code>#e74c3c</code>, <code>#8e44ad</code>) and NKF stage tags.</li>
+                                            <li>The dashboard charts align each risk category with NKF action prompts (repeat labs, medication review, nephrology referral, transplant planning).</li>
+                                        </ol>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Panel Talking Points</h6>
+                                        <ul>
+                                            <li>Heat map values stem directly from the Random Forest predictions saved during training.</li>
+                                            <li>Stages 1 and 2 are enforced so the visualization covers the full NKF spectrum.</li>
+                                            <li>Retraining automatically refreshes the distribution without manual updates.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTraining">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#docTrainingGuide" aria-expanded="false" aria-controls="docTrainingGuide">
+                                    Training Guide (Extract → Train Risk → Train Survival)
+                                </button>
+                            </h2>
+                            <div id="docTrainingGuide" class="accordion-collapse collapse" data-bs-parent="#documentationAccordion">
+                                <div class="accordion-body doc-content">
+                                    <p class="mb-3"><strong>Source:</strong> <code>ml_service/README_TRAINING.md</code></p>
+                                    <div class="doc-section">
+                                        <h6>Prerequisites</h6>
+                                        <ul>
+                                            <li>Python 3.8+, MySQL credentials configured via environment variables or <code>.env</code>.</li>
+                                            <li>Dependencies installed with <code>pip install -r requirements.txt</code>.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Training Steps</h6>
+                                        <ol>
+                                            <li><strong>Install dependencies</strong>: <code>pip install -r requirements.txt</code>.</li>
+                                            <li><strong>Extract data</strong>: <code>python scripts/extract_patient_data.py</code> (generates <code>data/training_data.csv</code> with binary features, CKD stages, and survival labels).</li>
+                                            <li><strong>Train risk model</strong>: <code>python scripts/train_model.py</code> (saves <code>risk_model.pkl</code> and the Random Forest training summary).</li>
+                                            <li><strong>Train survival models</strong>: <code>python scripts/train_survival_model.py</code> (saves <code>survival_model.pkl</code>, survival curves, and C-index report).</li>
+                                        </ol>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Binary Feature Reference</h6>
+                                        <p>The table in the training README reiterates the binary thresholds used by both the Random Forest and Cox models, matching the conversion table above.</p>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Troubleshooting Checklist</h6>
+                                        <ul>
+                                            <li>Verify database connectivity and patient record completeness.</li>
+                                            <li>Ensure minimum data volume (≥10 patients with full labs) before training.</li>
+                                            <li>Confirm Python package versions align with <code>requirements.txt</code>.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-section">
+                                        <h6>Next Steps After Training</h6>
+                                        <ul>
+                                            <li>Run FastAPI to serve new predictions.</li>
+                                            <li>Review refreshed metrics and visualizations prior to presenting to the panel.</li>
+                                            <li>Document actual metric outputs for transparency.</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
