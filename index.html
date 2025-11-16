@@ -2456,6 +2456,86 @@ creatinine_binary=1, bun_binary=0, hemoglobin_binary=1, diabetes=1</pre>
                                             <li><strong>Target Variable:</strong> <code>risk_category</code> (Low, Moderate, High, Critical)</li>
                                             <li><strong>Survival Data:</strong> <code>followup_months</code>, <code>event_observed</code>, <code>egfr_estimate</code>, <code>ckd_stage_label</code></li>
                                         </ul>
+                                        
+                                        <div class="alert alert-info mt-3">
+                                            <h6><i class="fas fa-info-circle me-2"></i>Important: Why Non-Binary Columns Exist in <code>training_data.csv</code></h6>
+                                            <p><strong>Question:</strong> "If the data is cleaned and converted to binary, why are there non-binary columns in the CSV?"</p>
+                                            <p><strong>Answer:</strong> The <code>training_data.csv</code> contains <strong>three types of columns</strong>:</p>
+                                            
+                                            <table class="doc-table mt-3">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Column Type</th>
+                                                        <th>Purpose</th>
+                                                        <th>Used by ML as Input?</th>
+                                                        <th>Example Values</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>Binary Features</strong><br>(11 columns)</td>
+                                                        <td>ML model inputs</td>
+                                                        <td><strong>YES</strong> - These are what the models use</td>
+                                                        <td>0 or 1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Target Variable</strong><br><code>risk_category</code></td>
+                                                        <td>What Random Forest predicts (output)</td>
+                                                        <td><strong>NO</strong> - It's the target, not an input</td>
+                                                        <td>Low, Moderate, High, Critical</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Derived Labels</strong><br><code>egfr_estimate</code>, <code>ckd_stage_label</code></td>
+                                                        <td>Calculated values for validation/visualization</td>
+                                                        <td><strong>NO</strong> - Not used as features</td>
+                                                        <td>105.0, Stage 1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Survival Data</strong><br><code>followup_months</code>, <code>event_observed</code></td>
+                                                        <td>Time-to-event data for Cox/Kaplan-Meier models</td>
+                                                        <td><strong>NO</strong> - Survival outcomes, not features</td>
+                                                        <td>66.2 months, 0 or 1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Metadata</strong><br><code>label_generated_at</code></td>
+                                                        <td>Timestamp for tracking</td>
+                                                        <td><strong>NO</strong> - Metadata only</td>
+                                                        <td>2025-11-13T12:17:53...</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            
+                                            <p class="mt-3"><strong>Key Points:</strong></p>
+                                            <ol>
+                                                <li><strong>The 11 binary features (columns 2-12)</strong> are the <em>only</em> inputs the ML models use. These are converted from raw lab values using clinical thresholds.</li>
+                                                <li><strong>Non-binary columns are NOT features:</strong>
+                                                    <ul>
+                                                        <li><code>risk_category</code> = Target variable (what we predict, not what we input)</li>
+                                                        <li><code>egfr_estimate</code> = Derived label (calculated from creatinine, age, gender - used for validation, not as input)</li>
+                                                        <li><code>followup_months</code> = Survival time data (required for Cox model training, but not a feature)</li>
+                                                        <li><code>ckd_stage_label</code> = Derived label (from eGFR, used for visualization, not as input)</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>During training:</strong>
+                                                    <ul>
+                                                        <li>Random Forest uses the 11 binary features (X) to predict <code>risk_category</code> (y)</li>
+                                                        <li>Cox model uses the same 11 binary features (X) with <code>followup_months</code> and <code>event_observed</code> for survival analysis</li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
+                                            
+                                            <p class="mt-3"><strong>Simple Analogy:</strong></p>
+                                            <p>Think of it like a test:
+                                            <ul>
+                                                <li><strong>Binary features</strong> = Student answers (the inputs)</li>
+                                                <li><code>risk_category</code> = The grade we want to predict (the output/target)</li>
+                                                <li><code>egfr_estimate</code> = A calculated score we use for validation (not an input)</li>
+                                                <li><code>followup_months</code> = Time data for survival analysis (not a feature)</li>
+                                            </ul>
+                                            The ML models only see the 11 binary features. The other columns are labels, outcomes, and metadata needed for training and evaluation.</p>
+                                            
+                                            <p class="mt-3 mb-0"><strong>Summary:</strong> The CSV contains binary features (inputs), target labels (outputs), survival data (outcomes), and derived labels (validation). Only the 11 binary features are used as ML inputs. The non-binary columns serve as targets, survival outcomes, and metadata - they are NOT fed to the models as features.</p>
+                                        </div>
                                     </div>
                                     <div class="doc-section">
                                         <h6>Step 4: Random Forest Training (<code>ml_service/scripts/train_model.py</code>)</h6>
@@ -2565,6 +2645,21 @@ creatinine_binary=1, bun_binary=0, hemoglobin_binary=1, diabetes=1</pre>
                                         A: We received <code>patients.csv</code> with 112 patient records from Mrs. Bayuga. We used <code>extract_patient_data.py</code> to convert lab values into binary features (0/1) based on clinical normal ranges.</p>
                                         <p><strong>Q: How did you create the training dataset?</strong><br>
                                         A: <code>extract_patient_data.py</code> uses <code>BinaryConverter</code> to transform each lab value into a binary flag. For example, creatinine 2.5 mg/dL becomes <code>creatinine_binary=1</code> (abnormal). This creates <code>training_data.csv</code> with 11 binary features per patient.</p>
+                                        <p><strong>Q: Why are there non-binary columns in <code>training_data.csv</code> if you said the data is binary?</strong><br>
+                                        A: Sir, the CSV contains <strong>three types of columns</strong>:
+                                        <ul>
+                                            <li><strong>11 Binary Features</strong> (columns 2-12) - These are the <em>only</em> inputs the ML models use. They are converted from raw lab values to 0/1 based on clinical thresholds.</li>
+                                            <li><strong>Target Variable</strong> (<code>risk_category</code>) - This is what we predict, not an input. It's the output/target for the Random Forest model.</li>
+                                            <li><strong>Non-Binary Columns</strong> - These are NOT features:
+                                                <ul>
+                                                    <li><code>egfr_estimate</code> = Derived label (calculated from creatinine, age, gender) - used for validation, not as input</li>
+                                                    <li><code>followup_months</code> = Survival time data - required for Cox model training, but not a feature</li>
+                                                    <li><code>ckd_stage_label</code> = Derived label (from eGFR) - used for visualization, not as input</li>
+                                                    <li><code>label_generated_at</code> = Metadata timestamp</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        During training, the Random Forest uses only the 11 binary features (X) to predict <code>risk_category</code> (y). The Cox model uses the same 11 binary features with survival time data. The non-binary columns are labels, outcomes, and metadata - they are NOT fed to the models as features.</p>
                                         <p><strong>Q: How did you train the models?</strong><br>
                                         A: We ran <code>train_model.py</code> to train a Random Forest (100 trees) on the binary features. Each tree makes binary splits (0/1), and the majority vote determines the risk category. We achieved 97.39% accuracy.</p>
                                         <p><strong>Q: How are results accurate?</strong><br>
